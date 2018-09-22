@@ -11,8 +11,8 @@ var properties = {
 		"Example Applications" ],
 	s1: {
 		device_adoption_comment:
-			'"Almost everyone carries a'+
-			'<br>Wifi enabled device"',
+			'Almost everyone carries a'+
+			'<br>Wifi enabled device',
 		device_adoption_xaxis:"Market penetration (UK 2018)",
 		device_adoption_yaxis:"Growth since last year",
 		device_adoption_source:"delloite",
