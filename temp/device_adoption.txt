@@ -1,0 +1,29 @@
+Highcharts.chart('chart____2771', {
+	chart: { type: 'bubble', plotBorderWidth: 1, zoomType: 'xy' },
+	legend: { enabled: false },
+	tooltip: { enabled: false },
+	title: { text: '' },
+	subtitle: { text: '' },
+	xAxis: { startOnTick: false, endOnTick: false, gridLineWidth: 0,
+		title: { text: 'Market penetration %' }, labels: { format: '{value}%' }},
+	yAxis: {
+		startOnTick: false, endOnTick: false, gridLineWidth: 0,
+		title: { text: 'Device ownership YoY%' },
+		labels: { format: '{value}%' }, maxPadding: 0.2,
+		plotLines: [{ color: '#CCCCCC', width: 1, value: 0, zIndex: 3 }]
+	},
+	plotOptions: { series: { dataLabels: { enabled: true, format: '{point.name}' } } },
+	series: [{ data: [
+		{ y: 3, x: 88, z: 88, name: 'Smartphone', type: 'Smartphone' },
+		{ y: 1, x: 79, z: 79, name: 'Laptop computer', type: 'Laptop computer' },
+		{ y: -7, x: 44, z: 44, name: 'Desktop/tower computer', type: 'Desktop/tower computer' },
+		{ y: 1, x: 39, z: 39, name: 'Large tablet: over 9"', type: 'Large tablet: over 9"' },
+		{ y: -11, x: 35, z: 35, name: 'Small tablet: 7" to 9"', type: 'Small tablet: 7" to 9"' },
+		{ y: -9, x: 27, z: 27, name: 'eReader', type: 'eReader' },
+		{ y: -13, x: 18, z: 18, name: 'Portable games player', type: 'Portable games player' },
+		{ y: 17, x: 18, z: 18, name: 'Fitness band', type: 'Fitness band' },
+		{ y: -17, x: 15, z: 15, name: 'Standard mobile phone', type: 'Standard mobile phone' },
+		{ y: 25, x: 8, z: 8, name: 'Smart watch', type: 'Smart watch' },
+		{ y: -21, x: 5, z: 5, name: 'VR headset', type: 'VR headset' } ],
+		marker: { fillColor: '#43b02a', lineWidth: 0, lineColor: null }}]
+});
