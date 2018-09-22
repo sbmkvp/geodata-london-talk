@@ -35,6 +35,9 @@ $(document).ready(function(){
 			'</div>');
 	}
 	$('body').prepend('<div id="device_adoption" style="display:none"></div>');
+	$('body').prepend('<div id="device_adoption_con" style="display:none">'+
+		'"Almost everyone carries a<br>'+
+		'Wifi enabled device"</div>');
 	particles_js('background');
 
 	function execute_action(a,b) {
@@ -83,6 +86,16 @@ $(document).ready(function(){
 				$('#sections, .section').fadeIn(300);
 			});
 		}
+	
+		// =====================================================================
+		// 3. Conclusion for device adoption statistics
+		// =====================================================================
+		if(a == 3 && b == 4) {
+			$('#device_adoption_con').fadeIn(300);
+		}
+		if(a == 4 && b == 3) {
+			$('#device_adoption_con').fadeOut(300);
+		}
 	}
 
 	function create_chart(id) {
@@ -92,7 +105,7 @@ $(document).ready(function(){
 			},
 			legend: { enabled: false }, tooltip: { enabled: false }, title: { text: '' }, subtitle: { text: '' },
 			xAxis: { startOnTick: false, endOnTick: false, gridLineWidth: 0,
-				title: { text: 'Market penetration 2018',style:{color:"#FFFFFF99"},margin:20 },
+				title: { text: 'Market penetration in UK 2018',style:{color:"#FFFFFF99"},margin:20 },
 				labels: { format: '{value}%',style:{color:"#FFFFFF99"}},
 				lineColor:"#FFFFFF99",tickLength:5 },
 			yAxis: {

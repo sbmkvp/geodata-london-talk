@@ -13,7 +13,7 @@ html body {
 	background-color: #405CB1;
 }
 
-#title, #sections{
+#title, #sections, #device_adoption_con{
 	position: absolute;
 	float: left;
 	top: 50%;
@@ -64,4 +64,15 @@ html body {
 	font-weight:100;
 	color:#FFFFFF99;
 	text-align:right;
+}
+
+#device_adoption_con {
+	font-size: x-large;
+	float: right;
+	top: 20%;
+	text-align: right;
+	width: 90%;
+	max-width: 1000px;
+	max-height: 650px;
+	display:none;
 }
