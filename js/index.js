@@ -70,6 +70,12 @@ $(document).ready(function(){
 		'<div id="device_adoption_con" style="display:none">'+
 		properties.s1.device_adoption_comment+
 		'</div>');
+	$('body').append(
+		'<div id="wifi_method">'+
+		'<div id="mobile"></div>'+
+		'<div id="router"></div>'+
+		'</div>'
+	)
 	particles_js('background');
 	
 	// Setting up the sequences ================================================
@@ -112,8 +118,11 @@ $(document).ready(function(){
 		if(a == 4 && b == 5) {
 			$('#device_adoption_con').fadeOut(300);
 			$('#device_adoption').fadeOut(300, function(){
-				$('#device_adoption').empty(); }); }
+				$('#device_adoption').empty();
+				$('#wifi_method').fadeIn(300);
+			}); }
 		if(a == 5 && b == 4) {
+			$('#wifi_method').fadeOut(300);
 			$('#device_adoption').fadeIn(300, function(){
 				device_adoption("device_adoption",properties);
 				$('#device_adoption').append(

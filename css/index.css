@@ -13,7 +13,7 @@ html body {
 	background-color: #405CB1;
 }
 
-#title, #sections, #device_adoption_con{
+#title, #sections, #device_adoption_con, #wifi_method{
 	position: absolute;
 	float: left;
 	top: 50%;
@@ -85,4 +85,34 @@ html body {
 	max-width: 1000px;
 	max-height: 650px;
 	display:none;
+}
+
+#wifi_method {
+	height:75%;
+}
+
+#router, #mobile {
+	transform: translate(0,-50%);
+	top: 50%;
+	position: relative;
+	background-repeat: no-repeat;
+}
+
+#router {
+	height: 90px;
+	width: 125px;
+	background-image: url(../img/router.png);
+	background-size: 125px 125px;
+	background-position-y: -20px;
+	float: right;
+	right: 10px;
+}
+
+#mobile {
+	height: 100px;
+	width: 100px;
+	background-image: url(../img/mobile.png);
+	background-size: 100px 100px;
+	float: left;
+	left: 10px;
 }
