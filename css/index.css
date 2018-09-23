@@ -40,6 +40,16 @@ html body {
 	font-size: medium;
 }
 
+#logos {
+	height: 30px;
+	width: 160px;
+	margin: 0px auto;
+	margin-top: 30px;
+	background-image: url(../img/logos.png);
+	background-size: 160px;
+	background-repeat: no-repeat;
+}
+
 .highcharts-credits {
 	display: none;
 }

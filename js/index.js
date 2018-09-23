@@ -47,12 +47,17 @@ $(document).ready(function(){
 		if(e.keyCode == 13 || e.keyCode == 39) {
 			execute_action(action,action+1);
 			action++; } });
-	
+	$(this).dblclick(function(e){
+		execute_action(action,action+1);
+		action++; });
+
 	// Create all the objects ==================================================
 	$('body').append('<div id="background"></div>');
 	$('body').prepend(
 		'<div id="title" style="display:none">'+properties.title+'<br>'+
-		'<div id="author"><br>'+properties.author+'</div>'+'</div>');
+		'<div id="author"><br>'+properties.author+'</div>'+
+		'<div id="logos"></div>'+
+		'</div>');
 	$('body').prepend(
 		'<div id="sections" style="display:none"></div>');
 	for(i in properties.sections) {
@@ -69,7 +74,7 @@ $(document).ready(function(){
 	
 	// Setting up the sequences ================================================
 	function execute_action(a,b) {
-
+		console.log(a+'..'+b);
 		// Show the Title and Information --------------------------------------
 		if(a == 0 && b == 1) { $("#title").fadeIn(300); }
 		if(a == 1 && b == 0) { $('#title').fadeOut(300); }
@@ -99,9 +104,23 @@ $(document).ready(function(){
 				particles_js('background');	
 				$('#sections, .section').fadeIn(300); }); }
 	
-		// Conclusion for device adoption statistics ---------------------------
+		// Comment for device adoption statistics ------------------------------
 		if(a == 3 && b == 4) { $('#device_adoption_con').fadeIn(300); }
 		if(a == 4 && b == 3) { $('#device_adoption_con').fadeOut(300); }
+		
+		// Remove the statistics and add Wi-Fi explaination  -------------------
+		if(a == 4 && b == 5) {
+			$('#device_adoption_con').fadeOut(300);
+			$('#device_adoption').fadeOut(300, function(){
+				$('#device_adoption').empty(); }); }
+		if(a == 5 && b == 4) {
+			$('#device_adoption').fadeIn(300, function(){
+				device_adoption("device_adoption",properties);
+				$('#device_adoption').append(
+					'<div id="source">source: '+
+					properties.s1.device_adoption_source +
+					'</div>');
+				$('#device_adoption_con').fadeIn(300); }); }
 
 	}
 
