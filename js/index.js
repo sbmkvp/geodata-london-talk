@@ -9,29 +9,36 @@ var properties = {
 		"Privacy of Users",
 		"Possible Solutions",
 		"Example Applications" ],
-	s1: {
-		device_adoption_comment:
-			'Almost everyone carries a'+
-			'<br>Wifi enabled device',
-		device_adoption_xaxis:"Market penetration (UK 2018)",
-		device_adoption_yaxis:"Growth since last year",
-		device_adoption_source:"delloite",
-		device_adoption_data: { data: [
-			{ y: +03, x: 88, z: 88, name: 'Smartphone'},
-			{ y: +01, x: 79, z: 79, name: 'Laptop'},
-			{ y: -07, x: 44, z: 44, name: 'Desktop'},
-			{ y: +01, x: 39, z: 39, name: 'Large<br>tablet'},
-			{ y: -11, x: 35, z: 35, name: 'Small<br>tablet'},
-			{ y: -09, x: 27, z: 27, name: 'eReader'},
-			{ y: -13, x: 18, z: 18, name: 'Gaming<br>device'},
-			{ y: +17, x: 18, z: 18, name: 'Fitness<br>band'},
-			{ y: -17, x: 15, z: 15, name: 'Mobile<br>phone' },
-			{ y: +25, x: 08, z: 08, name: 'Smart<br>watch' },
-			{ y: -21, x: 05, z: 05, name: 'VR' } ] } ,
-		wifi_method_comment:
-			'Almost everyone is broadcasting their'+
-			'<br>prescence through Wi-Fi probe requests',
-		wifi_method_data: { }
+	device_adoption_comment:
+		'Almost everyone carries a'+
+		'<br>Wifi enabled device',
+	device_adoption_xaxis:"Market penetration (UK 2018)",
+	device_adoption_yaxis:"Growth since last year",
+	device_adoption_source:"delloite",
+	device_adoption_data: { data: [
+		{ y: +03, x: 88, z: 88, name: 'Smartphone'},
+		{ y: +01, x: 79, z: 79, name: 'Laptop'},
+		{ y: -07, x: 44, z: 44, name: 'Desktop'},
+		{ y: +01, x: 39, z: 39, name: 'Large<br>tablet'},
+		{ y: -11, x: 35, z: 35, name: 'Small<br>tablet'},
+		{ y: -09, x: 27, z: 27, name: 'eReader'},
+		{ y: -13, x: 18, z: 18, name: 'Gaming<br>device'},
+		{ y: +17, x: 18, z: 18, name: 'Fitness<br>band'},
+		{ y: -17, x: 15, z: 15, name: 'Mobile<br>phone' },
+		{ y: +25, x: 08, z: 08, name: 'Smart<br>watch' },
+		{ y: -21, x: 05, z: 05, name: 'VR' } ] } ,
+	wifi_method_comment:
+		'Almost everyone is broadcasting their'+
+		'<br>prescence through Wi-Fi probe requests',
+	wifi_method_data: {
+		first : 'I am Bala\'s iPhone.'+
+			'<br>Is there any one I can connect to?',
+		second : 'I am router from eudrom.'+
+			'<br>You can connect to my network!',
+		third : 'Hey router B,'+
+			'<br>These are my authentication details...',
+		fourth : 'I am router B. I am availble!',
+
 	}
 }
 
@@ -68,12 +75,13 @@ $(document).ready(function(){
 		'<div id="device_adoption" style="display:none"></div>');
 	$('body').prepend(
 		'<div id="device_adoption_con" style="display:none">'+
-		properties.s1.device_adoption_comment+
+		properties.device_adoption_comment+
 		'</div>');
 	$('body').append(
 		'<div id="wifi_method">'+
 		'<div id="mobile"></div>'+
 		'<div id="router"></div>'+
+		'<div id="mobile_router_text"></div>'+
 		'</div>'
 	)
 	particles_js('background');
@@ -102,7 +110,7 @@ $(document).ready(function(){
 					device_adoption("device_adoption",properties);
 					$('#device_adoption').append(
 						'<div id="source">source: '+
-						properties.s1.device_adoption_source +
+						properties.device_adoption_source +
 						'</div>'); }); }); }
 		if(a == 3 && b == 2) {
 			$('#device_adoption').fadeOut(300, function(){
@@ -127,10 +135,26 @@ $(document).ready(function(){
 				device_adoption("device_adoption",properties);
 				$('#device_adoption').append(
 					'<div id="source">source: '+
-					properties.s1.device_adoption_source +
+					properties.device_adoption_source +
 					'</div>');
 				$('#device_adoption_con').fadeIn(300); }); }
 
+		// Device sending probe request ----------------------------------------
+		if(a == 5 && b == 6) { 
+			$('#mobile_router_text').html(properties.wifi_method_data.first); 
+			$('#mobile_router_text').fadeIn(300); 
+			$('#mobile_router_text').css({"background-position": "-100% 0"}); 
+		}
+		if(a == 6 && b == 5) { 
+			$('#mobile_router_text').fadeOut(300,function(){
+				$('#mobile_router_text').text(''); 
+			}); 
+			$('#mobile_router_text').css({"background-position": "0 -100%"}); 
+		}
+		// Device receiving probe response -------------------------------------
+		if(a == 6 && b == 7) {  }
+		if(a == 7 && b == 6) {  }
+	
 	}
 
 });

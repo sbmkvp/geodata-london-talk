@@ -10,7 +10,8 @@ html body {
 #background{
 	width: 100%;
 	height: 100%;
-	background-color: #405CB1;
+	/* background-color: #405CB1; */
+	background-color: #222;
 }
 
 #title, #sections, #device_adoption_con, #wifi_method{
@@ -78,11 +79,14 @@ html body {
 	text-align:right;
 }
 
-#device_adoption_con {
+#device_adoption_con, #wifi_method_con {
 	font-size: x-large;
-	float: right;
+	float: left;
+	position:relative;
 	top: 20%;
-	text-align: right;
+	left:50%;
+	transform: translate(-50%,-50%);
+	text-align: center;
 	width: 90%;
 	max-width: 1000px;
 	max-height: 650px;
@@ -117,4 +121,21 @@ html body {
 	background-size: 100px 100px;
 	float: left;
 	left: 10px;
+}
+
+#mobile_router_text {
+    width: 40%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    float: left;
+    transform: translate(-50%,-50%);
+    font-size: large;
+	text-align: center;
+	display:none;
+	background-image: linear-gradient(to right, #ffffff00 50%, #ffffff22 50%);
+	transition: background-position 0.3s linear, color 0.3s linear;
+	background-size: 200% 100%;
+	padding: 10px;
+	white-space: pre-line;
 }

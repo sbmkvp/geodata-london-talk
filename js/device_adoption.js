@@ -17,7 +17,7 @@ function device_adoption(div_name,data) {
 			lineColor:"#FFFFFF99",
 			tickLength:5,
 			title: {
-				text: data.s1.device_adoption_xaxis,
+				text: data.device_adoption_xaxis,
 				margin: 20,
 				style: { color: "#FFFFFF99" } },
 			labels: {
@@ -30,7 +30,7 @@ function device_adoption(div_name,data) {
 			lineColor:"#FFFFFF99",
 			maxPadding: 0.2,
 			title: {
-				text: data.s1.device_adoption_yaxis,
+				text: data.device_adoption_yaxis,
 				margin:20,
 				style: { color: "#FFFFFF99" } },
 			labels: {
@@ -39,6 +39,7 @@ function device_adoption(div_name,data) {
 		plotOptions: { 
 			series: {
 				animation:{ duration: 500 },
+				stickyTracking: false,
 				dataLabels: {
 					enabled: true,
 					format: '{point.name}',
@@ -56,5 +57,5 @@ function device_adoption(div_name,data) {
 						hover: {
 							fillColor: "#FF0000",
 							halo: { size: 0 } } } } } },
-		series: [ data.s1.device_adoption_data ] });
+		series: [ data.device_adoption_data ] });
 }
