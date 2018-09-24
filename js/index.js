@@ -34,11 +34,17 @@ var properties = {
 		first : 'I am Bala\'s iPhone.'+
 			'<br>Is there any one I can connect to?',
 		second : 'I am router from eudrom.'+
-			'<br>You can connect to my network!',
-		third : 'Hey router B,'+
-			'<br>These are my authentication details...',
-		fourth : 'I am router B. I am availble!',
-
+			'<br>You can connect to this network!',
+		third : 'Cool! Here is my'+
+			'<br>User id and password...',
+		fourth : 'Got it. Looks alright!'+
+			'<br>Lets switch to secret mode...',
+		fifth : 'gBfzkjFHo4uHlbfON8hU6Lva'+
+			'<br>13n5dI/T9aIJmIsKBGwwnU5'+
+			'<br>5HfPe/sG5hR1VPH/KCgOBMx',
+		sixth: 'UjuTZZd9V5fQgqR26jeNhlFQ'+
+			'<br>Qn15jr/WxZiMlIzxRzUJkUqO'+
+			'<br>iy24VaN3edu8EzwiWk82EuvJ',
 	}
 }
 
@@ -141,20 +147,175 @@ $(document).ready(function(){
 
 		// Device sending probe request ----------------------------------------
 		if(a == 5 && b == 6) { 
-			$('#mobile_router_text').html(properties.wifi_method_data.first); 
-			$('#mobile_router_text').fadeIn(300); 
-			$('#mobile_router_text').css({"background-position": "-100% 0"}); 
+			$('#mobile_router_text')
+				.html(properties.wifi_method_data.first)
+				.css({"left":"40%","text-align":"left"})
+				.fadeIn(300) 
+				.css({"background-position": "-100% 0"})
 		}
 		if(a == 6 && b == 5) { 
-			$('#mobile_router_text').fadeOut(300,function(){
-				$('#mobile_router_text').text(''); 
-			}); 
-			$('#mobile_router_text').css({"background-position": "0 -100%"}); 
+			$('#mobile_router_text')
+				.fadeOut(300,function(){ $(this).text(''); })
+				.css({"background-position": "0 -100%"}); 
 		}
+
 		// Device receiving probe response -------------------------------------
-		if(a == 6 && b == 7) {  }
-		if(a == 7 && b == 6) {  }
+		if(a == 6 && b == 7) { 
+			$('#mobile_router_text')
+				.fadeOut(300, function() { $(this).text(''); })
+				.css({"background-position": "0 -100%"})
+				.promise()
+				.done(function(){
+					$(this).html(properties.wifi_method_data.second)
+					.css({"left":"55%","text-align":"right"})
+					.fadeIn(300)
+					.css({"background-position": "+100% 0"}); 
+				});
+		}
+		if(a == 7 && b == 6) {
+			$('#mobile_router_text')
+				.fadeOut(300,function(){ $(this).text(''); })
+				.css({"background-position": "0 -100%"})
+				.promise()
+				.done(function(){
+					$(this).html(properties.wifi_method_data.first)
+						.css({"left":"40%","text-align":"left"})
+						.fadeIn(300) 
+						.css({"background-position": "-100% 0"})
+				});
+		}
 	
+		// Device receiving probe response -------------------------------------
+		if(a == 7 && b == 8) { 
+			$('#mobile_router_text')
+				.fadeOut(300, function() { $(this).text(''); })
+				.css({"background-position": "0 +100%"})
+				.promise()
+				.done(function(){
+					$(this).html(properties.wifi_method_data.third)
+					.css({"left":"40%","text-align":"left"})
+					.fadeIn(300)
+					.css({"background-position": "-100% 0"}); 
+				});
+		}
+		if(a == 8 && b == 7) {
+			$('#mobile_router_text')
+				.fadeOut(300,function(){ $(this).text(''); })
+				.css({"background-position": "0 -100%"})
+				.promise()
+				.done(function(){
+					$(this).html(properties.wifi_method_data.second)
+					.css({"left":"55%","text-align":"right"})
+					.fadeIn(300)
+					.css({"background-position": "+100% 0"}); 
+				});
+		}
+
+		// Device receiving probe response -------------------------------------
+		if(a == 8 && b == 9) { 
+			$('#mobile_router_text')
+				.fadeOut(300, function() { $(this).text(''); })
+				.css({"background-position": "0 -100%"})
+				.promise()
+				.done(function(){
+					$(this).html(properties.wifi_method_data.fourth)
+						.css({"left":"55%","text-align":"right"})
+						.fadeIn(300)
+						.css({"background-position": "+100% 0"}); 
+				});
+		}
+		if(a == 9 && b == 8) {
+			$('#mobile_router_text')
+				.fadeOut(300,function(){ $(this).text(''); })
+				.css({"background-position": "0 -100%"})
+				.promise()
+				.done(function(){
+					$(this).html(properties.wifi_method_data.third)
+					.css({"left":"40%","text-align":"left"})
+					.fadeIn(300)
+					.css({"background-position": "-100% 0"}); 
+				});
+		}
+	
+		// Device receiving probe response -------------------------------------
+		if(a == 9 && b == 10) { 
+			$('#mobile_router_text')
+				.fadeOut(300, function() { $(this).text(''); })
+				.css({"background-position": "0 +100%"})
+				.promise()
+				.done(function(){
+					$(this).html(properties.wifi_method_data.fifth)
+						.css({"left":"40%","text-align":"left"})
+						.fadeIn(300)
+						.css({"background-position": "-100% 0"}); 
+				});
+		}
+		if(a == 10 && b == 9) {
+			$('#mobile_router_text')
+				.fadeOut(300,function(){ $(this).text(''); })
+				.css({"background-position": "0 -100%"})
+				.promise()
+				.done(function(){
+					$(this).html(properties.wifi_method_data.fourth)
+						.css({"left":"55%","text-align":"right"})
+						.fadeIn(300)
+						.css({"background-position": "+100% 0"}); 
+				});
+		}
+
+		// Device receiving probe response -------------------------------------
+		if(a == 10 && b == 11) { 
+			$('#mobile_router_text')
+				.fadeOut(300, function() { $(this).text(''); })
+				.css({"background-position": "0 -100%"})
+				.promise()
+				.done(function(){
+					$(this).html(properties.wifi_method_data.sixth)
+						.css({"left":"55%","text-align":"right"})
+						.fadeIn(300)
+						.css({"background-position": "+100% 0"}); 
+				});
+		}
+		if(a == 11 && b == 10) {
+			$('#mobile_router_text')
+				.fadeOut(300,function(){ $(this).text(''); })
+				.css({"background-position": "0 -100%"})
+				.promise()
+				.done(function(){
+					$(this).html(properties.wifi_method_data.fifth)
+						.css({"left":"40%","text-align":"left"})
+						.fadeIn(300)
+						.css({"background-position": "-100% 0"}); 
+				});
+		}
+
+		// Device receiving probe response -------------------------------------
+		if(a == 11 && b == 12) { 
+			$('#mobile_router_text')
+				.fadeOut(300, function() { $(this).text(''); })
+				.css({"background-position": "0 +100%"})
+				.promise()
+				.done(function(){
+					$(this).html(properties.wifi_method_data.first)
+						.css({"left":"40%","text-align":"left"})
+						.css({"background-image":"linear-gradient(to right, #ffffff00 50%, #ff000022 50%)"})
+						.fadeIn(300)
+						.css({"background-position": "-100% 0"}); 
+				});
+		}
+		if(a == 12 && b == 11) {
+			$('#mobile_router_text')
+				.fadeOut(300,function(){ $(this).text(''); })
+				.css({"background-position": "0 -100%"})
+				.promise()
+				.done(function(){
+					$(this).css({"background-image":"linear-gradient(to right, #ffffff00 50%, #ffffff22 50%)"})
+						.html(properties.wifi_method_data.sixth)
+						.css({"left":"55%","text-align":"right"})
+						.fadeIn(300)
+						.css({"background-position": "+100% 0"}); 
+				});
+		}
 	}
 
 });
