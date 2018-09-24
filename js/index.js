@@ -31,20 +31,12 @@ var properties = {
 		'Almost everyone is broadcasting their'+
 		'<br>prescence through Wi-Fi probe requests',
 	wifi_method_data: {
-		first : 'I am Bala\'s iPhone.'+
-			'<br>Is there any one I can connect to?',
-		second : 'I am router from eudrom.'+
-			'<br>You can connect to this network!',
-		third : 'Cool! Here is my'+
-			'<br>User id and password...',
-		fourth : 'Got it. Looks alright!'+
-			'<br>Lets switch to secret mode...',
-		fifth : 'gBfzkjFHo4uHlbfON8hU6Lva'+
-			'<br>13n5dI/T9aIJmIsKBGwwnU5'+
-			'<br>5HfPe/sG5hR1VPH/KCgOBMx',
-		sixth: 'UjuTZZd9V5fQgqR26jeNhlFQ'+
-			'<br>Qn15jr/WxZiMlIzxRzUJkUqO'+
-			'<br>iy24VaN3edu8EzwiWk82EuvJ',
+		first : 'I am Bala\'s iPhone.<br>Is there any one I can connect to?',
+		second : 'I am router from eudrom.<br>You can connect to this network!',
+		third : 'Cool! Here is my<br>User id and password...',
+		fourth : 'Got it. Looks alright!<br>Lets switch to secret mode...',
+		fifth : 'gBfzkjFHo4uHlbfON8hU6Lva<br>5HfPe/sG5hR1VPH/KCgOBMx',
+		sixth: 'UjuTZZd9V5fQgqR26jeNhlFQ<br>iy24VaN3edu8EzwiWk82EuvJ',
 	}
 }
 
