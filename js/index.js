@@ -37,13 +37,13 @@ var properties = {
 		fourth : 'Got it. Looks alright!<br>Lets switch to secret mode...',
 		fifth : 'gBfzkjFHo4uHlbfON8hU6Lva<br>5HfPe/sG5hR1VPH/KCgOBMx',
 		sixth: 'UjuTZZd9V5fQgqR26jeNhlFQ<br>iy24VaN3edu8EzwiWk82EuvJ', },
-	research_question: "Can we count people high granuarity?",
-
+	research_question: "Can we measure footfall in retail areas"+
+		"<br>just by capturing these probe requests?",
 }
 
 $(document).ready(function(){
 
-	action = 0;
+	action = 14;
 	
 	// Set up key events for advance and goback ================================
 	$(this).keyup(function(e){
@@ -64,29 +64,24 @@ $(document).ready(function(){
 		'<div id="author"><br>'+properties.author+'</div>'+
 		'<div id="logos"></div>'+
 		'</div>');
-	$('body').prepend(
-		'<div id="sections" style="display:none"></div>');
+	$('body').prepend('<div id="sections" style="display:none"></div>');
 	for(i in properties.sections) {
-		$('#sections').append(
-			'<div class="section" style="display:none;">'
+		$('#sections').append('<div class="section" style="display:none;">'
 			+properties.sections[i]+'</div>'); }
-	$('body').prepend(
-		'<div id="device_adoption" style="display:none"></div>');
-	$('body').prepend(
-		'<div id="device_adoption_con" style="display:none">'+
-		properties.device_adoption_comment+
-		'</div>');
-	$('body').append(
-		'<div id="wifi_method">'+
+	$('body').prepend('<div id="device_adoption" style="display:none"></div>');
+	$('body').prepend('<div id="device_adoption_con" style="display:none">'+
+		properties.device_adoption_comment+'</div>');
+	$('body').append('<div id="wifi_method">'+
 		'<div id="mobile"></div>'+
 		'<div id="router"></div>'+
 		'<div id="mobile_router_text"></div>'+
-		'</div>'
-	)
-	$('body').prepend(
-		'<div id="wifi_method_con" style="display:none">'+
+		'</div>');
+	$('body').prepend('<div id="wifi_method_con" style="display:none">'+
 		properties.wifi_method_comment+
 		'</div>');
+	$('body').prepend('<div id="research_question"'+
+		'style="display:none; line-height:1.6;">'+
+		properties.research_question+'</div>');
 	particles_js('background');
 	
 	// Setting up the sequences ================================================
@@ -317,7 +312,7 @@ $(document).ready(function(){
 		// Device receiving probe response -------------------------------------
 		if(a == 12 && b == 13) {
 			$('#router').fadeOut(300);
-			blink = setInterval(function(){
+			setTimeout(function(){
 				$('#mobile_router_text')
 					.fadeOut(300) 
 					.css({"background-position": "0 -100%"})
@@ -327,25 +322,43 @@ $(document).ready(function(){
 							.fadeIn(300)
 							.css({"background-position": "-100% 0"});
 					});
-			},2000);		}
+			},600);
+			blink = setInterval(function(){
+				$('#mobile_router_text')
+					.fadeOut(300) 
+					.css({"background-position": "0 -100%"})
+					.promise()
+					.done(function(){
+						$(this)
+							.fadeIn(300)
+							.css({"background-position": "-100% 0"}); });
+			},2000);
+		}
 		if(a == 13 && b == 12) {
 			$('#router').fadeIn(300);
-			console.log(blink)
-			clearInterval(blink);
+			if(typeof blink != "undefined") { clearInterval(blink); }
 		}
 
 		// Wi-Fi method test ---------------------------------------------------
-		if(a == 13 && b == 14) { $('#wifi_method_con').fadeIn(300); }
+		if(a == 13 && b == 14) {
+			$('#wifi_method_con').fadeIn(300);
+			if(typeof blink != "undefined") { clearInterval(blink); }
+		}
 		if(a == 14 && b == 13) { $('#wifi_method_con').fadeOut(300); }
 
 		// Summary and recap ---------------------------------------------------
 		if(a == 14 && b == 15) {
 			$('.particles-js-canvas-el').remove();
-			clearInterval(blink);
-			$('#wifi_method').fadeOut(300);
+			$('#mobile').fadeOut(300);
+			$('#mobile_router_text').fadeOut(300);
+			$('#wifi_method_con').fadeOut(300,function(){
+				$('#research_question').fadeIn(300); });
 		}
-
-
+		if(a == 15 && b == 14) {
+			$('#research_question').fadeOut(300,function(){ 
+				$('#mobile').fadeIn(300);
+				$('#mobile_router_text').fadeIn(300);
+				$('#wifi_method_con').fadeIn(300); });
+		}
 	}
-
 });

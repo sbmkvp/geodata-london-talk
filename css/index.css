@@ -14,7 +14,7 @@ html body {
 	background-color: #222;
 }
 
-#title, #sections, #device_adoption_con, #wifi_method, #wifi_method_con{
+#title, #sections, #device_adoption_con, #wifi_method, #wifi_method_con, #research_question{
 	position: absolute;
 	float: left;
 	top: 50%;
