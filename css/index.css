@@ -14,7 +14,7 @@ html body {
 	background-color: #222;
 }
 
-#title, #sections, #device_adoption_con, #wifi_method{
+#title, #sections, #device_adoption_con, #wifi_method, #wifi_method_con{
 	position: absolute;
 	float: left;
 	top: 50%;
@@ -81,12 +81,10 @@ html body {
 
 #device_adoption_con, #wifi_method_con {
 	font-size: x-large;
-	float: left;
-	position:relative;
+	float: right;
 	top: 20%;
-	left:50%;
-	transform: translate(-50%,-50%);
-	text-align: center;
+	right: 10px;
+	text-align: right;
 	width: 90%;
 	max-width: 1000px;
 	max-height: 650px;

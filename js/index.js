@@ -28,21 +28,22 @@ var properties = {
 		{ y: +25, x: 08, z: 08, name: 'Smart<br>watch' },
 		{ y: -21, x: 05, z: 05, name: 'VR' } ] } ,
 	wifi_method_comment:
-		'Almost everyone is broadcasting their'+
-		'<br>prescence through Wi-Fi probe requests',
+		'Almost everyone is broadcasting their presence'+
+		'<br>all the time through Wi-Fi probe requests',
 	wifi_method_data: {
 		first : 'I am Bala\'s iPhone.<br>Is there any one I can connect to?',
 		second : 'I am router from eudrom.<br>You can connect to this network!',
 		third : 'Cool! Here is my<br>User id and password...',
 		fourth : 'Got it. Looks alright!<br>Lets switch to secret mode...',
 		fifth : 'gBfzkjFHo4uHlbfON8hU6Lva<br>5HfPe/sG5hR1VPH/KCgOBMx',
-		sixth: 'UjuTZZd9V5fQgqR26jeNhlFQ<br>iy24VaN3edu8EzwiWk82EuvJ',
-	}
+		sixth: 'UjuTZZd9V5fQgqR26jeNhlFQ<br>iy24VaN3edu8EzwiWk82EuvJ', },
+	research_question: "Can we count people high granuarity?",
+
 }
 
 $(document).ready(function(){
 
-	var action = 0;
+	action = 0;
 	
 	// Set up key events for advance and goback ================================
 	$(this).keyup(function(e){
@@ -82,6 +83,10 @@ $(document).ready(function(){
 		'<div id="mobile_router_text"></div>'+
 		'</div>'
 	)
+	$('body').prepend(
+		'<div id="wifi_method_con" style="display:none">'+
+		properties.wifi_method_comment+
+		'</div>');
 	particles_js('background');
 	
 	// Setting up the sequences ================================================
@@ -308,6 +313,39 @@ $(document).ready(function(){
 						.css({"background-position": "+100% 0"}); 
 				});
 		}
+
+		// Device receiving probe response -------------------------------------
+		if(a == 12 && b == 13) {
+			$('#router').fadeOut(300);
+			blink = setInterval(function(){
+				$('#mobile_router_text')
+					.fadeOut(300) 
+					.css({"background-position": "0 -100%"})
+					.promise()
+					.done(function(){
+						$(this)
+							.fadeIn(300)
+							.css({"background-position": "-100% 0"});
+					});
+			},2000);		}
+		if(a == 13 && b == 12) {
+			$('#router').fadeIn(300);
+			console.log(blink)
+			clearInterval(blink);
+		}
+
+		// Wi-Fi method test ---------------------------------------------------
+		if(a == 13 && b == 14) { $('#wifi_method_con').fadeIn(300); }
+		if(a == 14 && b == 13) { $('#wifi_method_con').fadeOut(300); }
+
+		// Summary and recap ---------------------------------------------------
+		if(a == 14 && b == 15) {
+			$('.particles-js-canvas-el').remove();
+			clearInterval(blink);
+			$('#wifi_method').fadeOut(300);
+		}
+
+
 	}
 
 });
