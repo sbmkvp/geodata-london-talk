@@ -44,7 +44,7 @@ var properties = {
 
 $(document).ready(function(){
 
-	action = 0;
+	action = 14;
 	
 	// Set up key events for advance and goback ================================
 	$(this).keyup(function(e){
@@ -417,8 +417,8 @@ $(document).ready(function(){
 				.attr('cx', 252)
 				.attr('cy', 510)
 				.attr('r',0)
-				.style('opacity', 0.1 )
-				.style('fill','#000')
+				.style('opacity', 0.02 )
+				.style('fill','#88F')
 				.transition().duration(500)
 				.attr('r',function(d){return(d)}); }
 		if(a == 18 && b == 17) {
