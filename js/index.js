@@ -85,6 +85,7 @@ $(document).ready(function(){
 		properties.research_question+'</div>');
 	$('body').prepend('<div id="section" style="display:none;"'+'</div>');
 	$('body').prepend('<svg id="section_svg" style="display:none;"'+'</svg>');
+	$('body').prepend('<canvas id="map_canvas" style="display:none;"'+'</canvas>');
 	particles_js('background');
 	
 	// Setting up the sequences ================================================
@@ -417,7 +418,7 @@ $(document).ready(function(){
 				.attr('cx', 252)
 				.attr('cy', 510)
 				.attr('r',0)
-				.style('opacity', 0.02 )
+				.style('opacity', 0.03 )
 				.style('fill','#88F')
 				.transition().duration(500)
 				.attr('r',function(d){return(d)}); }
@@ -519,10 +520,13 @@ $(document).ready(function(){
 		// Introduction to Smart Street Sensors --------------------------------
 		if(a == 22 && b == 23) {
 			$('#section, #section_svg').fadeOut(300);
+			$('#map_canvas').show();
 		}
 
 		if(a == 23 && b == 22) {
-			$('#section, #section_svg').fadeIn(300);
+			$('#map_canvas').fadeOut(300,function(){
+				$('#section, #section_svg').fadeIn(300);
+			});
 		}
 
 
