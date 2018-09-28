@@ -44,7 +44,7 @@ var properties = {
 
 $(document).ready(function(){
 
-	action = 14;
+	action = 0;
 	
 	// Set up key events for advance and goback ================================
 	$(this).keyup(function(e){
@@ -85,7 +85,7 @@ $(document).ready(function(){
 		properties.research_question+'</div>');
 	$('body').prepend('<div id="section" style="display:none;"'+'</div>');
 	$('body').prepend('<svg id="section_svg" style="display:none;"'+'</svg>');
-	$('body').prepend('<canvas id="map_canvas" style="display:none;"'+'</canvas>');
+	$('body').prepend('<svg id="map_svg" style="display:none;"'+'</svg>');
 	particles_js('background');
 	
 	// Setting up the sequences ================================================
@@ -520,12 +520,102 @@ $(document).ready(function(){
 		// Introduction to Smart Street Sensors --------------------------------
 		if(a == 22 && b == 23) {
 			$('#section, #section_svg').fadeOut(300);
-			$('#map_canvas').show();
+			$('#wifi_method').hide();
+			var map_svg = d3.select("#map_svg").call(d3.behavior.zoom().on("zoom", function () {map_svg.attr("transform", "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")") })).append('g')
+			var width = $('#map_svg').width();
+			var height = $('#map_svg').height();
+			projection = d3.geo.albers()
+				.center([1, 54])
+				.rotate([4.4, 0])
+				.parallels([50, 60])
+				.scale(5000)
+				.translate([width / 2, height / 2]);
+			path = d3.geo.path().projection(projection);
+			// var zoom = d3.behavior.zoom()
+			// 	.translate([width / 2, height / 2])
+			// 	.scale(5000)
+			// 	.scaleExtent([5000, 8 * 5000])
+			// function transform(t) {
+			// 	return function(d) {
+			// 	return "translate(" + t.apply(d) + ")"; }; }
+			// function zoomed() {
+			// 	projection.translate(zoom.translate()).scale(zoom.scale());
+			//     map_svg.selectAll("path").attr("d", path);
+			// 	map_svg.selectAll("circle").attr("transform", transform(d3.event.transform));
+			// }
+			// map_svg.call(zoom.on("zoom", zoomed)).call(zoom.event);
+			d3.json("data/uk.json", function(error, uk) {
+				if (error) { return console.error(error); }
+				var subunits = topojson.feature(uk, uk.objects.subunits);
+				map_svg.selectAll(".subunit")
+					.data(subunits.features)
+					.enter().append("path")
+					.attr("d", path)
+					.style('opacity',0.25)
+					.style('fill','#666')
+					.on('mouseover',
+						function(d){ d3.select(this).style('fill','#888888') })
+					.on('mouseout',
+						function(d){ d3.select(this).style('fill', '#666666') })
+				map_svg.append("path")
+					.datum(topojson.mesh(uk, uk.objects.subunits, function(a, b) { return a !== b; }))
+					.attr("d", path)
+					.attr("class", "subunit-boundary");
+				map_svg.selectAll(".place-label")
+					.data(topojson.feature(uk, uk.objects.places).features)
+					.enter().append("text")
+					.attr("class", "place-label")
+					.attr("transform", function(d) { return "translate(" + projection(d.geometry.coordinates) + ")"; })
+					.attr("dy", ".01em")
+					.style("pointer-events","none")
+					.text(function(d) { return d.properties.name; });
+				map_svg.selectAll(".place-label")
+					.attr("x", function(d) { return d.geometry.coordinates[0] > -1 ? 6 : -6; })
+					.style("pointer-events","none")
+					.style("text-anchor", function(d) { return d.geometry.coordinates[0] > -1 ? "start" : "end"; });
+				map_svg.selectAll(".subunit-label")
+					.data(topojson.feature(uk, uk.objects.subunits).features)
+					.enter().append("text")
+					.attr("class", function(d) { return "subunit-label " + d.id; })
+					.attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
+					.attr("dy", ".35em")
+					.style("pointer-events","none")
+					.text(function(d) { return d.properties.name; }); 
+				d3.csv("data/locations.csv", function(data) {
+					$('#map_svg').fadeIn(200,function(){
+					map_svg.selectAll(".catchment_marker")
+						.data(data).enter().append("circle")
+						.attr("cx", function(d) { return projection([d.lon,d.lat])[0]; })
+						.attr("cy", function(d) { return projection([d.lon,d.lat])[1]; })
+						.attr("r",0).style("opacity",1).style("fill", "#770000")
+						.transition().duration(300).attr('r',2)
+					map_svg.selectAll(".inner_marker")
+						.data(data).enter().append("circle")
+						.attr("cx", function(d) { return projection([d.lon,d.lat])[0]; })
+						.attr("cy", function(d) { return projection([d.lon,d.lat])[1]; })
+						.attr("r",0).style("opacity",1).style("fill", "#990000")
+						.transition().duration(300).attr('r',1.5)
+					map_svg.selectAll(".middle_marker")
+						.data(data).enter().append("circle")
+						.attr("cx", function(d) { return projection([d.lon,d.lat])[0]; })
+						.attr("cy", function(d) { return projection([d.lon,d.lat])[1]; })
+						.attr("r", 0).style("opacity", 1).style("fill", "#bb0000")
+						.transition().duration(300).attr('r',0.8)
+					map_svg.selectAll(".outer_marker")
+						.data(data).enter().append("circle")
+						.attr("cx", function(d) { return projection([d.lon,d.lat])[0]; })
+						.attr("cy", function(d) { return projection([d.lon,d.lat])[1]; })
+						.attr("r", 0).style("opacity", 1).style("fill", "#ff1111")
+						.transition().duration(300).attr('r',0.05)
+					});
+				});
+			});
 		}
-
 		if(a == 23 && b == 22) {
-			$('#map_canvas').fadeOut(300,function(){
+			$('#map_svg').fadeOut(300,function(){
+				$(this).empty();
 				$('#section, #section_svg').fadeIn(300);
+				$('#wifi_method').show();
 			});
 		}
 

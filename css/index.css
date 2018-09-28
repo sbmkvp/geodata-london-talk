@@ -158,7 +158,7 @@ html body {
 	background-size: 1000px;
 }
 
-#map_canvas {
+#map_svg{
 	position: absolute;
 	float: left;
 	top: 50%;
