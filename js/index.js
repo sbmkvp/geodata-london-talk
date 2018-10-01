@@ -1,53 +1,6 @@
-// Overall Presentation information
-var properties = {
-	title :
-		"Counting real-time highstreet footfall from <br>"+
-		"Wi-Fi probe requests",
-	author: "Balamurugan Soundararaj",
-	sections: [
-		"Wi-Fi as a data source",
-		"Privacy of Users",
-		"Possible Solutions",
-		"Example Applications" ],
-	device_adoption_comment:
-		'Almost everyone carries a'+
-		'<br>Wifi enabled device',
-	device_adoption_xaxis:"Market penetration (UK 2018)",
-	device_adoption_yaxis:"Growth since last year",
-	device_adoption_source:"delloite",
-	device_adoption_data: { data: [
-		{ y: +03, x: 88, z: 88, name: 'Smartphone'},
-		{ y: +01, x: 79, z: 79, name: 'Laptop'},
-		{ y: -07, x: 44, z: 44, name: 'Desktop'},
-		{ y: +01, x: 39, z: 39, name: 'Large<br>tablet'},
-		{ y: -11, x: 35, z: 35, name: 'Small<br>tablet'},
-		{ y: -09, x: 27, z: 27, name: 'eReader'},
-		{ y: -13, x: 18, z: 18, name: 'Gaming<br>device'},
-		{ y: +17, x: 18, z: 18, name: 'Fitness<br>band'},
-		{ y: -17, x: 15, z: 15, name: 'Mobile<br>phone' },
-		{ y: +25, x: 08, z: 08, name: 'Smart<br>watch' },
-		{ y: -21, x: 05, z: 05, name: 'VR' } ] } ,
-	wifi_method_comment:
-		'Almost everyone is broadcasting their presence'+
-		'<br>all the time through Wi-Fi probe requests',
-	wifi_method_data: {
-		first : 'I am Bala\'s iPhone.<br>Is there any one I can connect to?',
-		second : 'I am router from eudrom.<br>You can connect to this network!',
-		third : 'Cool! Here is my<br>User id and password...',
-		fourth : 'Got it. Looks alright!<br>Lets switch to secret mode...',
-		fifth : 'gBfzkjFHo4uHlbfON8hU6Lva<br>5HfPe/sG5hR1VPH/KCgOBMx',
-		sixth: 'UjuTZZd9V5fQgqR26jeNhlFQ<br>iy24VaN3edu8EzwiWk82EuvJ', },
-	research_question: "Can we measure footfall in retail areas"+
-		"<br>just by capturing these probe requests?",
-	sensor_range: [100,150,200,250,300,370,440],
-	map_stats: "1511",
-	map_scotland:'translate(-2996.6728896835943,-1410.7406786457543) scale(6.233316637283958)',
-	map_london:'translate(-19538.07549323157,-18140.757895294242) scale(25.634236082867787)',
-}
-
 $(document).ready(function(){
 
-	action = 14;
+	action = 23;
 	
 	// Set up key events for advance and goback ================================
 	$(this).keyup(function(e){
@@ -90,10 +43,11 @@ $(document).ready(function(){
 	$('body').prepend('<svg id="section_svg" style="display:none;"'+'</svg>');
 	$('body').prepend('<div id="map_stats" style="display:none;">'+
 		'<span id="loc_sum">'+properties.map_stats+'</span>'+
-		'<span style="font-size:20px;font-weight:100"><br>Locations</span>'+
+		'<span style="font-size:20px;font-weight:100"><br>Locations (~700 active)</span>'+
 		'</div>');
 	$('body').prepend('<svg id="map_svg" style="display:none;"'+'</svg>');
-	particles_js('background');
+	$('body').prepend('<svg id="analysis_svg" style="display:none;"'+'</svg>');
+	if(action==0) { particles_js('background'); }
 	
 	// Setting up the sequences ================================================
 	function execute_action(a,b) {
@@ -390,7 +344,8 @@ $(document).ready(function(){
 		// Introduction to Smart Street Sensors --------------------------------
 		if(a == 15 && b == 16) {
 			$('#research_question').fadeOut(300, function() {
-				$(this).html('Smart Street Sensor Project')
+				$(this).html('<span style="font-weight:500">Smart Street Sensor</span>'+
+					'<span style="font-weight:100"> Project</span>')
 					.fadeIn(300); });
 		}
 		if(a == 16 && b == 15) {
@@ -527,160 +482,62 @@ $(document).ready(function(){
 		// Introduction to Smart Street Sensors --------------------------------
 		if(a == 22 && b == 23) {
 			$('#section, #section_svg').fadeOut(300);
-			$('#wifi_method').hide();
-			var map_svg = d3.select("#map_svg").call(d3.behavior.zoom()
-				.on("zoom", function () {
-					map_svg.attr("transform", "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")");
-					// map_svg.selectAll('.place-label')
-					// 	.style("font-size",7/d3.event.scale);
-					// map_svg.selectAll('.subunit-label')
-					// 	.style("font-size",10/d3.event.scale);
-					update_location_count();
+			$('#wifi_method').fadeOut(300,function(){
+				$('#map_stats').fadeIn(300,function(){ device_locations(); });
+			});
+		}
+		if(a == 23 && b == 22) {
+			$('#map_stats, #map_svg').fadeOut(300,function(){
+				$('#map_svg').empty();
+				$('#router, #mobile').hide();
+				$('#wifi_method, #section, #section_svg').fadeIn(300);
+			});
+		}
 
-				})).append('g')
-			var width = $('#map_svg').width();
-			var height = $('#map_svg').height();
-			projection = d3.geo.albers()
-				.center([1, 54])
-				.rotate([4.4, 0])
-				.parallels([50, 60])
-				.scale(5000)
-				.translate([width / 2, height / 2]);
-			path = d3.geo.path().projection(projection);
-			d3.json("data/uk.json", function(error, uk) {
-				if (error) { return console.error(error); }
-				var subunits = topojson.feature(uk, uk.objects.subunits);
-				map_svg.selectAll(".subunit")
-					.data(subunits.features)
-					.enter().append("path")
-					.attr("d", path)
-					.style('opacity',0.25)
-					.style('fill','#666')
-					.on('mouseover',
-						function(d){ d3.select(this).style('fill','#888888') })
-					.on('mouseout',
-						function(d){ d3.select(this).style('fill', '#666666') })
-				map_svg.append("path")
-					.datum(topojson.mesh(uk, uk.objects.subunits, function(a, b) { return a !== b; }))
-					.attr("d", path)
-					.attr("class", "subunit-boundary");
-				d3.csv("data/locations.csv", function(data) {
-					$('#map_svg').fadeIn(200,function(){
-					map_svg.selectAll(".catchment_marker")
-						.data(data).enter().append("circle")
-						.attr("cx", function(d) { return projection([d.lon,d.lat])[0]; })
-						.attr("cy", function(d) { return projection([d.lon,d.lat])[1]; })
-						.attr("r",0).style("opacity",1).style("fill", "#770000")
-						.style("pointer-events","none")
-						.transition().duration(300).attr('r',2)
-					map_svg.selectAll(".inner_marker")
-						.data(data).enter().append("circle")
-						.attr("cx", function(d) { return projection([d.lon,d.lat])[0]; })
-						.attr("cy", function(d) { return projection([d.lon,d.lat])[1]; })
-						.attr("r",0).style("opacity",1).style("fill", "#990000")
-						.attr("class","inner_marker")
-						.style("pointer-events","none")
-						.transition().duration(300).attr('r',1.5)
-					map_svg.selectAll(".middle_marker")
-						.data(data).enter().append("circle")
-						.attr("cx", function(d) { return projection([d.lon,d.lat])[0]; })
-						.attr("cy", function(d) { return projection([d.lon,d.lat])[1]; })
-						.attr("r", 0).style("opacity", 1).style("fill", "#bb0000")
-						.style("pointer-events","none")
-						.transition().duration(300).attr('r',0.8)
-					map_svg.selectAll(".outer_marker")
-						.data(data).enter().append("circle")
-						.attr("cx", function(d) { return projection([d.lon,d.lat])[0]; })
-						.attr("cy", function(d) { return projection([d.lon,d.lat])[1]; })
-						.attr("r", 0).style("opacity", 1).style("fill", "#ff1111")
-						.style("pointer-events","none")
-						.transition().duration(300).attr('r',0.05)
-					map_svg.selectAll(".place-label")
-						.data(topojson.feature(uk, uk.objects.places).features)
-						.enter().append("text")
-						.attr("class", "place-label")
-						.attr("transform", function(d) { return "translate(" + projection(d.geometry.coordinates) + ")"; })
-						.attr("dy", ".01em")
-						.style("pointer-events","none")
-						.text(function(d) { return d.properties.name; });
-					map_svg.selectAll(".place-label")
-						.attr("x", function(d) { return d.geometry.coordinates[0] > -1 ? 6 : -6; })
-						.style("pointer-events","none")
-						.style("text-anchor", function(d) { return d.geometry.coordinates[0] > -1 ? "start" : "end"; });
-					map_svg.selectAll(".subunit-label")
-						.data(topojson.feature(uk, uk.objects.subunits).features)
-						.enter().append("text")
-						.attr("class", function(d) { return "subunit-label " + d.id; })
-						.attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
-						.attr("dy", ".35em")
-						.style("pointer-events","none")
-						.text(function(d) { return d.properties.name; }); 
+		// Introduction to Smart Street Sensors --------------------------------
+		if(a == 23 && b == 24) {
+			$('#map_stats').fadeOut(300);
+			$('#map_svg').fadeOut(300,function(){
+				$('#map_svg').empty();
+				$('#analysis_svg').show(function(){
+					var width = $(this).width();
+					var height = $(this).height();
+					var chart = d3.select(this).append('g');
+					d3.csv('data/pr.csv',function(pr){
+						chart.selectAll('.pr')
+							.data(pr)
+							.enter()
+							.append('circle')
+							.attr("cy",function(d){
+								return(d.sequence); })
+							.attr("cx",function(d){
+								return(d.timestamp*10);})
+							.attr("r",function(d){
+								return(d.length/100); })
+							.style("opacity",0.85)
+							.style("stroke",'#000')
+							.style("fill",function(d){
+								return(d.type=="local"?"#f00":"#0f0"); })
 					});
 				});
 			});
-			$('#map_stats').show();
-		}
-		if(a == 23 && b == 22) {
-			$('#map_svg').fadeOut(300,function(){
-				$(this).empty();
-				$('#section, #section_svg').fadeIn(300);
-				$('#wifi_method').show();
-			});
-			$('#map_stats').fadeOut(300);
-		}
-
-		// 
-		if(a == 23 && b == 24) {
-			d3.select("#map_svg > g")
-				.transition().duration(1000)
-				.attr('transform',properties.map_london)
-				.each('end',function(d){
-					update_location_count()
-				});
 		}
 		if(a == 24 && b == 23) {
-			d3.select("#map_svg > g")
-				.transition().duration(1000)
-				.attr('transform','')
-				.each('end',function(d){
-					update_location_count()
-				});
+			$('#map_svg').show();
+			$('#map_stats').fadeIn(300,function(){ device_locations(); });
 		}
 
-		// 
+		// Introduction to Smart Street Sensors --------------------------------
 		if(a == 24 && b == 25) {
-			d3.select("#map_svg > g")
-				.transition().duration(1000)
-				.attr('transform',properties.map_scotland)
-				.each('end',function(d){
-					update_location_count()
-				});
+
 		}
 		if(a == 25 && b == 24) {
-			d3.select("#map_svg > g")
-				.transition().duration(1000)
-				.attr('transform',properties.map_london)
-				.each('end',function(d){
-					update_location_count()
-				});
 		}
 
-		// 
+		// Introduction to Smart Street Sensors --------------------------------
 		if(a == 25 && b == 26) {
-			d3.select("#map_svg > g")
-				.transition().duration(1000)
-				.attr('transform','')
-				.each('end',function(d){
-					update_location_count()
-				});
 		}
 		if(a == 26 && b == 25) {
-			d3.select("#map_svg > g")
-				.transition().duration(1000)
-				.attr('transform',properties.map_scotland)
-				.each('end',function(d){
-					update_location_count()
-				});
 		}
 	}
 });

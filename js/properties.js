@@ -1,0 +1,61 @@
+var properties = {
+	title :
+		"Counting real-time highstreet footfall from <br>"+
+		"Wi-Fi probe requests",
+	author: "Balamurugan Soundararaj",
+	sections: [
+		"Wi-Fi as a data source",
+		"Privacy of Users",
+		"Possible Solutions",
+		"Example Applications" ],
+	device_adoption_comment:
+		'Almost everyone carries a'+
+		'<br>Wifi enabled device',
+	device_adoption_xaxis:"Market penetration (UK 2018)",
+	device_adoption_yaxis:"Growth since last year",
+	device_adoption_source:"delloite",
+	device_adoption_data: { data: [
+		{ y: +03, x: 88, z: 88, name: 'Smartphone'},
+		{ y: +01, x: 79, z: 79, name: 'Laptop'},
+		{ y: -07, x: 44, z: 44, name: 'Desktop'},
+		{ y: +01, x: 39, z: 39, name: 'Large<br>tablet'},
+		{ y: -11, x: 35, z: 35, name: 'Small<br>tablet'},
+		{ y: -09, x: 27, z: 27, name: 'eReader'},
+		{ y: -13, x: 18, z: 18, name: 'Gaming<br>device'},
+		{ y: +17, x: 18, z: 18, name: 'Fitness<br>band'},
+		{ y: -17, x: 15, z: 15, name: 'Mobile<br>phone' },
+		{ y: +25, x: 08, z: 08, name: 'Smart<br>watch' },
+		{ y: -21, x: 05, z: 05, name: 'VR' } ] } ,
+	wifi_method_comment:
+		'Almost everyone is broadcasting their presence'+
+		'<br>all the time through Wi-Fi probe requests',
+	wifi_method_data: {
+		first : 'I am Bala\'s iPhone.<br>Is there any one I can connect to?',
+		second : 'I am router from eudrom.<br>You can connect to this network!',
+		third : 'Cool! Here is my<br>User id and password...',
+		fourth : 'Got it. Looks alright!<br>Lets switch to secret mode...',
+		fifth : 'gBfzkjFHo4uHlbfON8hU6Lva<br>5HfPe/sG5hR1VPH/KCgOBMx',
+		sixth: 'UjuTZZd9V5fQgqR26jeNhlFQ<br>iy24VaN3edu8EzwiWk82EuvJ', },
+	research_question: "Can we measure footfall in retail areas"+
+		"<br>just by capturing these probe requests?",
+	sensor_range: [100,150,200,250,300,370,440],
+	map_stats: "1511",
+	analysis_data: [
+		{"Timestamp":0000, "Interval": 01, "MAC Address": "A"},
+		{"Timestamp":0001, "Interval": 01, "MAC Address": "B"},
+		{"Timestamp":0002, "Interval": 01, "MAC Address": "B"},
+		{"Timestamp":0003, "Interval": 01, "MAC Address": "A"},
+		{"Timestamp":0004, "Interval": 01, "MAC Address": "A"},
+		{"Timestamp":0005, "Interval": 02, "MAC Address": "A"},
+		{"Timestamp":0006, "Interval": 02, "MAC Address": "B"},
+		{"Timestamp":0007, "Interval": 02, "MAC Address": "C"},
+		{"Timestamp":0008, "Interval": 02, "MAC Address": "C"},
+		{"Timestamp":0009, "Interval": 02, "MAC Address": "D"},
+		{"Timestamp":0010, "Interval": 03, "MAC Address": "A"},
+		{"Timestamp":0011, "Interval": 03, "MAC Address": "B"},
+		{"Timestamp":0012, "Interval": 03, "MAC Address": "B"},
+		{"Timestamp":0013, "Interval": 03, "MAC Address": "D"},
+		{"Timestamp":0014, "Interval": 03, "MAC Address": "C"},
+	]
+}
+

@@ -206,7 +206,21 @@ html body {
 
 #loc_sum {
 	font-size: 45px;
-	font-weight: 300;
+	font-weight: 500;
 	line-height:1.4;
 }
 
+#analysis_svg {
+	position: absolute;
+	float: left;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width : 90%;
+	height: 90%;
+	max-width:1200px;
+	max-height:800px;
+	font-family: Roboto;
+	font-weight: 300;
+	display:none;
+}
