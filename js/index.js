@@ -40,7 +40,9 @@ var properties = {
 	research_question: "Can we measure footfall in retail areas"+
 		"<br>just by capturing these probe requests?",
 	sensor_range: [100,150,200,250,300,370,440],
-	map_stats: "1511"
+	map_stats: "1511",
+	map_scotland:'translate(-2996.6728896835943,-1410.7406786457543) scale(6.233316637283958)',
+	map_london:'translate(-19538.07549323157,-18140.757895294242) scale(25.634236082867787)',
 }
 
 $(document).ready(function(){
@@ -88,7 +90,7 @@ $(document).ready(function(){
 	$('body').prepend('<svg id="section_svg" style="display:none;"'+'</svg>');
 	$('body').prepend('<div id="map_stats" style="display:none;">'+
 		'<span id="loc_sum">'+properties.map_stats+'</span>'+
-		'<span style="font-size:20px;font-weight:100"> Locations</span>'+
+		'<span style="font-size:20px;font-weight:100"><br>Locations</span>'+
 		'</div>');
 	$('body').prepend('<svg id="map_svg" style="display:none;"'+'</svg>');
 	particles_js('background');
@@ -529,10 +531,10 @@ $(document).ready(function(){
 			var map_svg = d3.select("#map_svg").call(d3.behavior.zoom()
 				.on("zoom", function () {
 					map_svg.attr("transform", "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")");
-					map_svg.selectAll('.place-label')
-						.style("font-size",7/d3.event.scale);
-					map_svg.selectAll('.subunit-label')
-						.style("font-size",10/d3.event.scale);
+					// map_svg.selectAll('.place-label')
+					// 	.style("font-size",7/d3.event.scale);
+					// map_svg.selectAll('.subunit-label')
+					// 	.style("font-size",10/d3.event.scale);
 					update_location_count();
 
 				})).append('g')
@@ -569,6 +571,7 @@ $(document).ready(function(){
 						.attr("cx", function(d) { return projection([d.lon,d.lat])[0]; })
 						.attr("cy", function(d) { return projection([d.lon,d.lat])[1]; })
 						.attr("r",0).style("opacity",1).style("fill", "#770000")
+						.style("pointer-events","none")
 						.transition().duration(300).attr('r',2)
 					map_svg.selectAll(".inner_marker")
 						.data(data).enter().append("circle")
@@ -576,18 +579,21 @@ $(document).ready(function(){
 						.attr("cy", function(d) { return projection([d.lon,d.lat])[1]; })
 						.attr("r",0).style("opacity",1).style("fill", "#990000")
 						.attr("class","inner_marker")
+						.style("pointer-events","none")
 						.transition().duration(300).attr('r',1.5)
 					map_svg.selectAll(".middle_marker")
 						.data(data).enter().append("circle")
 						.attr("cx", function(d) { return projection([d.lon,d.lat])[0]; })
 						.attr("cy", function(d) { return projection([d.lon,d.lat])[1]; })
 						.attr("r", 0).style("opacity", 1).style("fill", "#bb0000")
+						.style("pointer-events","none")
 						.transition().duration(300).attr('r',0.8)
 					map_svg.selectAll(".outer_marker")
 						.data(data).enter().append("circle")
 						.attr("cx", function(d) { return projection([d.lon,d.lat])[0]; })
 						.attr("cy", function(d) { return projection([d.lon,d.lat])[1]; })
 						.attr("r", 0).style("opacity", 1).style("fill", "#ff1111")
+						.style("pointer-events","none")
 						.transition().duration(300).attr('r',0.05)
 					map_svg.selectAll(".place-label")
 						.data(topojson.feature(uk, uk.objects.places).features)
@@ -623,7 +629,59 @@ $(document).ready(function(){
 			$('#map_stats').fadeOut(300);
 		}
 
+		// 
+		if(a == 23 && b == 24) {
+			d3.select("#map_svg > g")
+				.transition().duration(1000)
+				.attr('transform',properties.map_london)
+				.each('end',function(d){
+					update_location_count()
+				});
+		}
+		if(a == 24 && b == 23) {
+			d3.select("#map_svg > g")
+				.transition().duration(1000)
+				.attr('transform','')
+				.each('end',function(d){
+					update_location_count()
+				});
+		}
 
+		// 
+		if(a == 24 && b == 25) {
+			d3.select("#map_svg > g")
+				.transition().duration(1000)
+				.attr('transform',properties.map_scotland)
+				.each('end',function(d){
+					update_location_count()
+				});
+		}
+		if(a == 25 && b == 24) {
+			d3.select("#map_svg > g")
+				.transition().duration(1000)
+				.attr('transform',properties.map_london)
+				.each('end',function(d){
+					update_location_count()
+				});
+		}
+
+		// 
+		if(a == 25 && b == 26) {
+			d3.select("#map_svg > g")
+				.transition().duration(1000)
+				.attr('transform','')
+				.each('end',function(d){
+					update_location_count()
+				});
+		}
+		if(a == 26 && b == 25) {
+			d3.select("#map_svg > g")
+				.transition().duration(1000)
+				.attr('transform',properties.map_scotland)
+				.each('end',function(d){
+					update_location_count()
+				});
+		}
 	}
 });
 

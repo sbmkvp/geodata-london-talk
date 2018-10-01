@@ -197,12 +197,16 @@ html body {
 	float: left;
 	bottom: 50px;
 	width : 100%;
-	font-size: 45px;
-	font-family: Roboto;
-	font-weight: 300;
-	line-height:1.4;
 	color: white;
 	text-align: center;
 	text-shadow: #000000 2px 2px 10px;
+	font-family: Roboto;
 	display:none;
 }
+
+#loc_sum {
+	font-size: 45px;
+	font-weight: 300;
+	line-height:1.4;
+}
+
