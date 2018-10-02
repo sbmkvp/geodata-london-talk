@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-	action = 40;
+	action = 0;
 	
 	// Set up key events for advance and goback ================================
 	$(this).keyup(function(e){
