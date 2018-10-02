@@ -58,6 +58,8 @@ $(document).ready(function(){
 	$('body').prepend('<div id="sequence_numbers_bottom" style="display:none"></div>');
 	$('body').prepend('<div id="solution_chart" style="display:none"></div>');
 	$('body').prepend('<div id="conclusions" style="display:none"></div>');
+	$('body').prepend('<div id="ridge_plots" style="display:none"></div>');
+	$('body').prepend('<div id="calendar" style="display:none"></div>');
 	if(action==0) { particles_js('background'); }
 	
 	// Setting up the sequences ================================================
@@ -1011,9 +1013,28 @@ $(document).ready(function(){
 			});
 		}
 
-
-
-
+		if(a == 52 && b == 53) {
+			$("#conclusions").fadeOut(300,function(){
+				$('.particles-js-canvas-el').remove();
+				$('#ridge_plots').fadeIn(300);
+			})
+		}
+	
+		if(a == 53 && b == 54) {
+			$("#ridge_plots").fadeOut(300,function(){
+				$('#calendar').fadeIn(300);
+			})		
+		}
+	
+		if(a == 54 && b == 55) {
+			$("#calendar").fadeOut(300,function(){
+				particles_js('background');
+				$("#conclusions")
+					.html("Questions?")
+					.fadeIn(300);
+			});
+		}
+				
 	}
 });
 
@@ -1044,11 +1065,11 @@ function update_location_count () {
 	});
 }
 
-  function endall(transition, callback) { 
-	      if (typeof callback !== "function") throw new Error("Wrong callback in endall");
-	      if (transition.size() === 0) { callback() }
-	      var n = 0; 
-	      transition 
-	          .each(function() { ++n; }) 
-	          .each("end", function() { if (!--n) callback.apply(this, arguments); }); 
-	    } 
+function endall(transition, callback) { 
+	  if (typeof callback !== "function") throw new Error("Wrong callback in endall");
+	  if (transition.size() === 0) { callback() }
+	  var n = 0; 
+	  transition 
+		  .each(function() { ++n; }) 
+		  .each("end", function() { if (!--n) callback.apply(this, arguments); }); 
+} 
