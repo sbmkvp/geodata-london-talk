@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-	action = 0;
+	action = 40;
 	
 	// Set up key events for advance and goback ================================
 	$(this).keyup(function(e){
@@ -52,6 +52,8 @@ $(document).ready(function(){
 	$('body').prepend('<div id="issue_chart" style="display:none"></div>');
 	$('body').prepend('<div id="solutions" style="display:none"></div>');
 	$('body').prepend('<div id="signal_strength" style="display:none"></div>');
+	$('body').prepend('<div id="signal_strength_con" style="display:none">'+
+		properties.signal_strenth_con+'</div>');
 	if(action==0) { particles_js('background'); }
 	
 	// Setting up the sequences ================================================
@@ -835,6 +837,7 @@ $(document).ready(function(){
 		if(a == 39 && b == 40) {
 			$('#solutions').fadeOut(300,function(){
 				$('.particles-js-canvas-el').remove();
+				$('#signal_strength_con').fadeIn(300);
 				$('#signal_strength').fadeIn(300);
 			});
 		}
@@ -842,23 +845,128 @@ $(document).ready(function(){
 
 
 		// Introduction to Smart Street Sensors --------------------------------
-		if(a == 25 && b == 26) {}
+		if(a == 40 && b == 41) {
+			$('#signal_strength_con').fadeOut(300);
+			$('#signal_strength').fadeOut(300,function(){
+				$('#analysis_svg').show(function(){
+					var width = $(this).width();
+					var height = $(this).height();
+					var chart = d3.select(this).append('g');
+					d3.csv('data/pr.csv',function(pr){
+						chart.selectAll('.pr')
+							.data(pr)
+							.enter()
+							.append('circle')
+							.attr("cy",function(d){return(height-height*0.33); })
+							.attr('cx',width+10)
+							.attr('r',10)
+							.style("stroke",'#000')
+							.style("fill",'#CCC')
+							.style("opacity",0.65)
+							.transition().duration(500)
+							.attr("cx",function(d){return(5+(d.timestamp/5*(width-10)));})
+					});
+					chart.append('rect')
+						.attr('x',0).attr('y',height-(height*0.33))
+						.attr('height',1).attr('width',width)
+						.style('stroke','#fff')
+					chart.append('text')
+						.text("Time")
+						.attr('class','xaxis_text')
+						.attr('x',width/2).attr('y',height-(height*0.33)+50)
+						.style('transform','translate(-50% -50%)')
+						.style('font-size','12')
+						.style('fill','#fff')
+						.attr('text-anchor','middle')
+				});
+			});
+		}
 		if(a == 26 && b == 25) {}
 
 
 		// Introduction to Smart Street Sensors --------------------------------
-		if(a == 25 && b == 26) {}
+		if(a == 41 && b == 42) {
+			var width = $('#analysis_svg').width();
+			var height = $('#analysis_svg').height();
+			var chart = d3.select('#analysis_svg > g');
+			chart.selectAll('circle')
+				.transition().duration(1000)
+				.attr('cy',function(d){return(height-(d.signal/100*height)-25)})
+			chart.selectAll('rect').transition().duration(1000)
+				.attr('y',height-50)
+			chart.selectAll('.xaxis_text').transition().duration(1000)
+				.attr('y',height-15)
+			chart.append('text')
+				.text('Signal Strength')
+				.attr('class','yaxis_text')
+				.style('transform','translate(-50% -50%)')
+				.attr('x',-height+200).attr('y',10)
+				.attr('transform','rotate(-90)')
+				.style('font-size','12')
+				.style('fill','#fff')
+				.attr('text-anchor','middle')
+		}
 		if(a == 26 && b == 25) {}
 
 
 		// Introduction to Smart Street Sensors --------------------------------
-		if(a == 25 && b == 26) {}
+		if(a == 42 && b == 43) {
+			var chart = d3.select('#analysis_svg > g');
+			chart.selectAll('circle')
+				.transition().duration(1000)
+				.style('stroke','#fff')
+				.style('fill',function(d){return(d.signal>40?'#87C38F':'#DA2C38')})
+		}
 		if(a == 26 && b == 25) {}
 
 
 		// Introduction to Smart Street Sensors --------------------------------
-		if(a == 25 && b == 26) {}
+		if(a == 43 && b == 44) {
+			var chart = d3.select('#analysis_svg > g');
+			chart.selectAll('circle')
+				.transition().duration(1000)
+				.style('opacity',function(d){return(d.signal>40?0.85:0)})
+		}
 		if(a == 26 && b == 25) {}
+
+
+
+		// Introduction to Smart Street Sensors --------------------------------
+		if(a == 44 && b == 45) {
+			var width = $('#analysis_svg').width();
+			var height = $('#analysis_svg').height();
+			var chart = d3.select('#analysis_svg > g');
+			chart.selectAll('circle')
+				.transition().duration(1000)
+				.attr('cy',function(d){return(height-(d.seq/25*height)-25)})
+			chart.selectAll('.yaxis_text').transition().duration(1000)
+				.text('Sequence Number')
+		}
+		if(a == 26 && b == 25) {}
+
+
+		// Introduction to Smart Street Sensors --------------------------------
+		if(a == 45 && b == 46) {
+			var chart = d3.select('#analysis_svg > g');
+			var cols = d3.scale.ordinal().domain([1,2,3,4,5,6,7,8,9,10,'r']).range(['#8dd3c7','#ffffb3','#bebada','#fb8072','#80b1d3','#fdb462','#b3de69','#fccde5','#d9d9d9','#bc80bd','#aaaaaa']);
+			chart.selectAll('circle')
+				.transition().duration(1000)
+				.style('fill',function(d){return(cols(d.mac))})
+		}
+		if(a == 26 && b == 25) {}
+
+		// Introduction to Smart Street Sensors --------------------------------
+		if(a == 45 && b == 46) {
+			var chart = d3.select('#analysis_svg > g');
+			var cols = d3.scale.ordinal().domain([1,2,3,4,5,6,7,8,9,10,'r']).range(['#8dd3c7','#ffffb3','#bebada','#fb8072','#80b1d3','#fdb462','#b3de69','#fccde5','#d9d9d9','#bc80bd','#aaaaaa']);
+			chart.selectAll('circle')
+				.transition().duration(1000)
+				.style('fill',function(d){return(cols(d.mac))})
+		}
+		if(a == 26 && b == 25) {}
+
+
+
 
 
 	}

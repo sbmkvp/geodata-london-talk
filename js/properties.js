@@ -5,9 +5,9 @@ var properties = {
 	author: "Balamurugan Soundararaj",
 	sections: [
 		"Wi-Fi as a data source",
-		"Privacy of Users",
-		"Possible Solutions",
-		"Example Applications" ],
+		"SmartStreetSensor Project",
+		"Issues and solutions",
+		"Results and Applications" ],
 	device_adoption_comment:
 		'Almost everyone carries a'+
 		'<br>Wifi enabled device',
@@ -44,10 +44,12 @@ var properties = {
 		'gives us a reasonably accurate footfall volume <br>'+
 		'<span style="font-size:small">*external noise is still not solved</span>',
 	analysis_issue: 'MAC address <span style="font-weight:500">radomisation</span>',
-	solution_discussion1:'More personal data?',
-	solution_discussion2:'Need a solution which involves <br>'+
-		'1. No personal data <br>2. Passive collection',
-	solution_discussion3:'<span>Signal Strength</span>'+
-		'<br> <span>Sequence Numbers</span>',
+	solution_discussion1:'Need for collecting more data?',
+	solution_discussion2:'Need a solution which,'+
+		'<br>1. Does not involve collection of personal data.'+
+		'<br>2. Does allow us to collect data passively.',
+	solution_discussion3:'Signal Strength'+
+		'<br>Sequence Numbers',
+	signal_strenth_con:'Signal strength has information on location of the'+
+		'<br>source of the probe requests',
 }
-
