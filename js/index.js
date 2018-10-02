@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-	action = 0;
+	action = 46;
 	
 	// Set up key events for advance and goback ================================
 	$(this).keyup(function(e){
@@ -54,6 +54,10 @@ $(document).ready(function(){
 	$('body').prepend('<div id="signal_strength" style="display:none"></div>');
 	$('body').prepend('<div id="signal_strength_con" style="display:none">'+
 		properties.signal_strenth_con+'</div>');
+	$('body').prepend('<div id="sequence_numbers_top" style="display:none"></div>');
+	$('body').prepend('<div id="sequence_numbers_bottom" style="display:none"></div>');
+	$('body').prepend('<div id="solution_chart" style="display:none"></div>');
+	$('body').prepend('<div id="conclusions" style="display:none"></div>');
 	if(action==0) { particles_js('background'); }
 	
 	// Setting up the sequences ================================================
@@ -956,15 +960,56 @@ $(document).ready(function(){
 		if(a == 26 && b == 25) {}
 
 		// Introduction to Smart Street Sensors --------------------------------
-		if(a == 45 && b == 46) {
-			var chart = d3.select('#analysis_svg > g');
-			var cols = d3.scale.ordinal().domain([1,2,3,4,5,6,7,8,9,10,'r']).range(['#8dd3c7','#ffffb3','#bebada','#fb8072','#80b1d3','#fdb462','#b3de69','#fccde5','#d9d9d9','#bc80bd','#aaaaaa']);
-			chart.selectAll('circle')
-				.transition().duration(1000)
-				.style('fill',function(d){return(cols(d.mac))})
+		if(a == 46 && b == 47) {
+			$('#analysis_svg').fadeOut(300,function(){
+				$(this).empty();
+				$("#sequence_numbers_top, #sequence_numbers_bottom").fadeIn(300);
+			});
 		}
 		if(a == 26 && b == 25) {}
+		
+		// Introduction to Smart Street Sensors --------------------------------
+		if(a == 47 && b == 48) {
+			$("#sequence_numbers_top").fadeOut(300);
+			$('#sequence_numbers_bottom').fadeOut(300,function(){
+				$('#solution_chart').show();
+				$.getJSON("data/solution.json",function(data){ solution_chart('solution_chart',data); });
+			});
+		}
 
+
+		if(a == 48 && b == 49) {
+			$("#solution_chart").fadeOut(300,function(){
+				particles_js('background');
+				$("#conclusions")
+					.html(properties.conclusions[0])
+					.fadeIn(300);
+			});
+		}
+		
+		if(a == 49 && b == 50) {
+			$("#conclusions").fadeOut(300,function(){
+				$("#conclusions")
+					.html(properties.conclusions[1])
+					.fadeIn(300);
+			});
+		}
+	
+		if(a == 50 && b == 51) {
+			$("#conclusions").fadeOut(300,function(){
+				$("#conclusions")
+					.html(properties.conclusions[2])
+					.fadeIn(300);
+			});
+		}
+	
+		if(a == 51 && b == 52) {
+			$("#conclusions").fadeOut(300,function(){
+				$("#conclusions")
+					.html(properties.conclusions[3])
+					.fadeIn(300);
+			});
+		}
 
 
 

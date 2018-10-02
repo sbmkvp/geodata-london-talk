@@ -89,3 +89,34 @@ function issue_chart(div_name,data) {
 	series: data,
 	});
 }
+
+
+function solution_chart(div_name,data) {
+	Highcharts.chart(div_name, {
+	chart: { type:'line', zoomType: 'x', backgroundColor:'#00000000',
+		animation:true, style:{ fontFamily:'Roboto' } },
+	tooltip: { enabled: false },
+	title: { text: '' },
+	subtitle: { text: '' },
+	legend: { enabled: false},
+	xAxis: {type: 'datetime',
+		startOnTick: false,
+		endOnTick: false,
+		gridLineWidth: 0,
+		lineColor:"#FFFFFF99",
+		tickLength:5,
+		title: { text: '',margin: 20,style: { color: "#FFFFFF99" } }, labels: { style: { color: "#FFFFFF99" } } },
+	yAxis: {
+		startOnTick: false,
+		endOnTick: false,
+		gridLineWidth: 0,
+		lineColor:"#FFFFFF99",
+		maxPadding: 0.2,
+		title: {text: "Number of MAC Addresses",margin:20,style:{color:"#FFFFFF99"}},
+		labels: {style: { color: "#FFFFFF99" } } },
+	plotOptions: {
+		series:	{ animation:{ duration: 1000 }, stickyTracking: false },
+		line: { marker: {radius: 2}, lineWidth:1,states: { hover: { lineWidth: 2 } } } },
+	series: data,
+	});
+}

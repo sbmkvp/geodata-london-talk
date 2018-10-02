@@ -14,7 +14,7 @@ html body {
 	background-color: #262626;
 }
 
-#title, #sections, #device_adoption_con, #wifi_method, #wifi_method_con, #research_question, #analysis_con, #solutions {
+#title, #sections, #device_adoption_con, #wifi_method, #wifi_method_con, #research_question, #analysis_con, #solutions, #conclusions{
 	position: absolute;
 	float: left;
 	top: 50%;
@@ -225,7 +225,7 @@ html body {
 	display:none;
 }
 
-#issue_chart {
+#issue_chart, #solution_chart {
 	position: absolute;
 	float: left;
 	top: 50%;
@@ -281,4 +281,37 @@ html body {
 	text-shadow: #000000 2px 2px 10px;
 }
 
+
+#sequence_numbers_top{
+	position: absolute;
+	float: left;
+	top: 10%;
+	left: 50%;
+	transform: translate(-50%, 0%);
+	max-width:650px;
+	max-height:500px;
+	min-height:500px;
+	min-width:650px;
+	display:none;
+	background-image: url(../img/seq.png);
+	background-size: 650px;
+	opacity:0.75;
+}
+
+#sequence_numbers_bottom{
+	position: absolute;
+	float: left;
+	bottom: 20%;
+	left: 50%;
+	transform: translate(-50%, 0%);
+	max-width:800px;
+	max-height:180px;
+	min-height:180px;
+	min-width:800px;
+	display:none;
+	background-image: url(../img/results.png);
+	background-size: 820px;
+	background-position: -5px -1px;
+	opacity:0.75;
+}
 

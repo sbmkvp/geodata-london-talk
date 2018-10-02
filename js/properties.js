@@ -52,4 +52,10 @@ var properties = {
 		'<br>Sequence Numbers',
 	signal_strenth_con:'Signal strength has information on location of the'+
 		'<br>source of the probe requests',
+	conclusions:[
+		"The external noise problem was solved by looking at the singal strength.",
+		"MAC randomisation was solved by looking at the sequence numbers",
+		"Achieved a stable, accurate footfall count without personal/identifiable data",
+		"Examples / Applications"
+	],
 }
