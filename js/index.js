@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-	action = 23;
+	action = 0;
 	
 	// Set up key events for advance and goback ================================
 	$(this).keyup(function(e){
@@ -47,6 +47,11 @@ $(document).ready(function(){
 		'</div>');
 	$('body').prepend('<svg id="map_svg" style="display:none;"'+'</svg>');
 	$('body').prepend('<svg id="analysis_svg" style="display:none;"'+'</svg>');
+	$('body').prepend('<div id="analysis_con" style="display:none;">'+
+		properties.analysis_con+'</div>');
+	$('body').prepend('<div id="issue_chart" style="display:none"></div>');
+	$('body').prepend('<div id="solutions" style="display:none"></div>');
+	$('body').prepend('<div id="signal_strength" style="display:none"></div>');
 	if(action==0) { particles_js('background'); }
 	
 	// Setting up the sequences ================================================
@@ -686,55 +691,153 @@ $(document).ready(function(){
 				.attr("cy",function(d){return(height-(d.pos2/15*height)-25)})
 		}
 
+		// Introduction to Smart Street Sensors --------------------------------
+		if(a == 30 && b == 31) {
+			$("#analysis_svg").fadeOut(300,function(){
+				particles_js('background');
+				$("#analysis_con").fadeIn(300);
+			});
+		}
+		if(a == 31 && b == 30) {
+			$('#analysis_con').fadeOut(300);
+			$('.particles-js-canvas-el').fadeOut(300, function(){
+				$('.particles-js-canvas-el').remove();
+				$("#analysis_svg").fadeIn(300);
+			});
+		}
+
+		// Introduction to Smart Street Sensors --------------------------------
+		if(a == 31 && b == 32) {
+			$('#analysis_con').fadeOut(300,function(){
+				$(this).html(properties.analysis_issue)
+					.fadeIn(300); });
+		}
+		if(a == 32 && b == 31) {
+			$('#analysis_con').fadeOut(300,function(){
+				$(this).html(properties.analysis_con)
+					.fadeIn(300);
+			});
+		}
 
 
 		// Introduction to Smart Street Sensors --------------------------------
-		if(a == 25 && b == 26) {}
+		if(a == 32 && b == 33) {
+			$('#analysis_con').fadeOut(300,function(){
+				$('.particles-js-canvas-el').remove();
+				$('#issue_chart').show();
+				$.getJSON("data/issue.json",function(data){ issue_chart('issue_chart',data); });
+			});
+		}
+		if(a == 33 && b == 32) {
+			$('#issue_chart').fadeOut(300,function(){
+				$(this).empty();
+				particles_js('background');
+				$('#analysis_con').fadeIn(300);
+			});
+		}
+
+
+		// Introduction to Smart Street Sensors --------------------------------
+		if(a == 33 && b == 34) {
+			$('#issue_chart').fadeOut(300,function(){
+				$(this).empty();
+				var chart = d3.select("#analysis_svg > g");
+				var width = $('#analysis_svg').width()
+				var height= $('#analysis_svg').height()
+				var cols = d3.scale.ordinal().domain([1,2,3,4,5,6,7,8,9,10,'r']).range(['#8dd3c7','#ffffb3','#bebada','#fb8072','#80b1d3','#fdb462','#b3de69','#fccde5','#d9d9d9','#bc80bd','#aaaaaa']);
+				$('#analysis_svg').fadeIn(300);
+				chart.selectAll('circle')
+					.on('mouseout',function(){
+							d3.select(this)
+								.style('fill',function(d){return(cols(d.mac))})
+								.style('stroke','#000')})
+					.style("opacity",0.85)
+					.style('fill',function(d){return(cols(d.mac))})
+					.style("stroke",'#000')
+					.style("stroke-width",1)
+					.attr("cy",function(d){return(height-(d.pos1/15*height)-25)})
+			});
+		}
+		if(a == 26 && b == 25) {
+			
+		
+		}
+
+
+		// Introduction to Smart Street Sensors --------------------------------
+		if(a == 34 && b == 35) {
+			var chart = d3.select("#analysis_svg > g");
+			var height= $('#analysis_svg').height()
+			var cols = d3.scale.ordinal().domain([1,2,3,4,5,6,7,8,9,10,99]).range(['#8dd3c7','#ffffb3','#bebada','#fb8072','#80b1d3','#fdb462','#b3de69','#fccde5','#d9d9d9','#bc80bd','#000000']);
+			chart.selectAll('circle')
+				.style('opacity',1)
+				.on('mouseout',function(){
+						d3.select(this)
+							.style('fill',function(d){return(cols(d.mac2))})
+							.style('stroke-width',function(d){return(d.mac2==99?2:1)})
+							.style('stroke','#fff')})
+				.transition().duration(1000)
+				.style('fill',function(d){return(cols(d.mac2))})
+				.style('stroke','#fff')
+				.style('stroke-width',function(d){return(d.mac2==99?2:1)})
+				.attr("cy",function(d){return(height-(d.pos4/15*height)-25)})
+		}
 		if(a == 26 && b == 25) {}
 
 
 		// Introduction to Smart Street Sensors --------------------------------
-		if(a == 25 && b == 26) {}
+		if(a == 35 && b == 36) {
+			var chart = d3.select("#analysis_svg > g");
+			var height= $('#analysis_svg').height();
+			chart.selectAll('circle')
+				.transition().duration(1000)
+				.attr('cy',function(d){return(height-(d.pos5/15*height)-25)})
+		}
 		if(a == 26 && b == 25) {}
 
 
 		// Introduction to Smart Street Sensors --------------------------------
-		if(a == 25 && b == 26) {}
+		if(a == 36 && b == 37) {
+			$('#analysis_svg').fadeOut(300,function(){
+				$(this).empty();
+				particles_js('background')
+				$("#solutions")
+					.html(properties.solution_discussion1)
+					.fadeIn(300);
+			});
+		}
 		if(a == 26 && b == 25) {}
 
 
 		// Introduction to Smart Street Sensors --------------------------------
-		if(a == 25 && b == 26) {}
+		if(a == 37 && b == 38) {
+			$('#solutions').fadeOut(300,function(){
+				$("#solutions")
+					.html(properties.solution_discussion2)
+					.fadeIn(300);
+			});
+		}
 		if(a == 26 && b == 25) {}
 
 
 		// Introduction to Smart Street Sensors --------------------------------
-		if(a == 25 && b == 26) {}
+		if(a == 38 && b == 39) {
+			$('#solutions').fadeOut(300,function(){
+				$("#solutions")
+					.html(properties.solution_discussion3)
+					.fadeIn(300);
+			});
+		}
 		if(a == 26 && b == 25) {}
 
 
 		// Introduction to Smart Street Sensors --------------------------------
-		if(a == 25 && b == 26) {}
-		if(a == 26 && b == 25) {}
-
-
-		// Introduction to Smart Street Sensors --------------------------------
-		if(a == 25 && b == 26) {}
-		if(a == 26 && b == 25) {}
-
-
-		// Introduction to Smart Street Sensors --------------------------------
-		if(a == 25 && b == 26) {}
-		if(a == 26 && b == 25) {}
-
-
-		// Introduction to Smart Street Sensors --------------------------------
-		if(a == 25 && b == 26) {}
-		if(a == 26 && b == 25) {}
-
-
-		// Introduction to Smart Street Sensors --------------------------------
-		if(a == 25 && b == 26) {}
+		if(a == 39 && b == 40) {
+			$('#solutions').fadeOut(300,function(){
+				$('.particles-js-canvas-el').remove();
+				$('#signal_strength').fadeIn(300);
+			});
+		}
 		if(a == 26 && b == 25) {}
 
 

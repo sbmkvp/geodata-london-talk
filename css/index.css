@@ -14,7 +14,7 @@ html body {
 	background-color: #262626;
 }
 
-#title, #sections, #device_adoption_con, #wifi_method, #wifi_method_con, #research_question{
+#title, #sections, #device_adoption_con, #wifi_method, #wifi_method_con, #research_question, #analysis_con, #solutions {
 	position: absolute;
 	float: left;
 	top: 50%;
@@ -224,3 +224,37 @@ html body {
 	font-weight: 300;
 	display:none;
 }
+
+#issue_chart {
+	position: absolute;
+	float: left;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width : 90%;
+	height: 90%;
+	max-width:1000px;
+	max-height:650px;
+	font-family: Roboto;
+	font-weight: 300;
+	display:none;
+}
+
+
+#signal_strength {
+	position: absolute;
+	float: left;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	max-width:1000px;
+	max-height:545px;
+	min-height:545px;
+	min-width:1000px;
+	display:none;
+	background-image: url(../img/signal_strength.png);
+	background-size: 1000px;
+	opacity:0.75;
+}
+
+

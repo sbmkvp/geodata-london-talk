@@ -40,22 +40,14 @@ var properties = {
 		"<br>just by capturing these probe requests?",
 	sensor_range: [100,150,200,250,300,370,440],
 	map_stats: "1511",
-	analysis_data: [
-		{"Timestamp":0000, "Interval": 01, "MAC Address": "A"},
-		{"Timestamp":0001, "Interval": 01, "MAC Address": "B"},
-		{"Timestamp":0002, "Interval": 01, "MAC Address": "B"},
-		{"Timestamp":0003, "Interval": 01, "MAC Address": "A"},
-		{"Timestamp":0004, "Interval": 01, "MAC Address": "A"},
-		{"Timestamp":0005, "Interval": 02, "MAC Address": "A"},
-		{"Timestamp":0006, "Interval": 02, "MAC Address": "B"},
-		{"Timestamp":0007, "Interval": 02, "MAC Address": "C"},
-		{"Timestamp":0008, "Interval": 02, "MAC Address": "C"},
-		{"Timestamp":0009, "Interval": 02, "MAC Address": "D"},
-		{"Timestamp":0010, "Interval": 03, "MAC Address": "A"},
-		{"Timestamp":0011, "Interval": 03, "MAC Address": "B"},
-		{"Timestamp":0012, "Interval": 03, "MAC Address": "B"},
-		{"Timestamp":0013, "Interval": 03, "MAC Address": "D"},
-		{"Timestamp":0014, "Interval": 03, "MAC Address": "C"},
-	]
+	analysis_con:'Along with manual calibration, this methodology<br>'+
+		'gives us a reasonably accurate footfall volume <br>'+
+		'<span style="font-size:small">*external noise is still not solved</span>',
+	analysis_issue: 'MAC address <span style="font-weight:500">radomisation</span>',
+	solution_discussion1:'More personal data?',
+	solution_discussion2:'Need a solution which involves <br>'+
+		'1. No personal data <br>2. Passive collection',
+	solution_discussion3:'<span>Signal Strength</span>'+
+		'<br> <span>Sequence Numbers</span>',
 }
 
