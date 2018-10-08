@@ -48,7 +48,7 @@ html body {
 	width: 160px;
 	margin: 0px auto;
 	margin-top: 30px;
-	background-image: url(../img/logos.png);
+	background-image: url(../images/logos.png);
 	background-size: 160px;
 	background-repeat: no-repeat;
 }
@@ -105,7 +105,7 @@ html body {
 #router {
 	height: 90px;
 	width: 125px;
-	background-image: url(../img/router.png);
+	background-image: url(../images/router.png);
 	background-size: 125px 125px;
 	background-position-y: -20px;
 	float: right;
@@ -115,7 +115,7 @@ html body {
 #mobile {
 	height: 100px;
 	width: 100px;
-	background-image: url(../img/mobile.png);
+	background-image: url(../images/mobile.png);
 	background-size: 100px 100px;
 	float: left;
 	left: 10px;
@@ -154,7 +154,7 @@ html body {
 }
 
 #section {
-	background-image: url(../img/section.png);
+	background-image: url(../images/section.png);
 	background-size: 1000px;
 }
 
@@ -252,7 +252,7 @@ html body {
 	min-height:545px;
 	min-width:1000px;
 	display:none;
-	background-image: url(../img/signal_strength.png);
+	background-image: url(../images/signal_strength.png);
 	background-size: 1000px;
 	opacity:0.75;
 }
@@ -293,7 +293,7 @@ html body {
 	min-height:500px;
 	min-width:650px;
 	display:none;
-	background-image: url(../img/seq.png);
+	background-image: url(../images/seq.png);
 	background-size: 650px;
 	opacity:0.75;
 }
@@ -309,7 +309,7 @@ html body {
 	min-height:180px;
 	min-width:800px;
 	display:none;
-	background-image: url(../img/results.png);
+	background-image: url(../images/results.png);
 	background-size: 820px;
 	background-position: -5px -1px;
 	opacity:0.75;
@@ -328,7 +328,7 @@ html body {
 	min-width:900px;
 	display:none;
 	background-size: 900px;
-	background-image: url(../img/ridges.png);
+	background-image: url(../images/ridges.png);
 }
 
 #calendar {
@@ -343,7 +343,7 @@ html body {
 	min-width:1200px;
 	display:none;
 	background-size: 1200px;
-	background-image: url(../img/calendar.png);
+	background-image: url(../images/calendar.png);
 	filter: brightness(60%) contrast(250%);
 }
 

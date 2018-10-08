@@ -64,13 +64,13 @@ $(document).ready(function(){
 	$('body').prepend('<div id="ridge_plots" style="display:none"></div>');
 	$('body').prepend('<div id="calendar" style="display:none"></div>');
 
+	action = 0;
+	
 	if(action==0) { particles_js('background'); }
 
 	// =========================================================================
 	// Navigation actions ** Needs to be broken down to smaller chunks**
 	// =========================================================================
-
-	action = 0;
 	
 	function execute_action(a,b) {
 		
