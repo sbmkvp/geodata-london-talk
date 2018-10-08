@@ -31,7 +31,7 @@ var properties = {
 		'<br>all the time through Wi-Fi probe requests',
 	wifi_method_data: {
 		first : 'I am Bala\'s iPhone.<br>Is there any one I can connect to?',
-		second : 'I am router from edurom.<br>You can connect to this network!',
+		second : 'I am router from eudrom.<br>You can connect to this network!',
 		third : 'Cool! Here is my<br>User id and password...',
 		fourth : 'Got it. Looks alright!<br>Lets switch to secret mode...',
 		fifth : 'gBfzkjFHo4uHlbfON8hU6Lva<br>5HfPe/sG5hR1VPH/KCgOBMx',
@@ -43,7 +43,7 @@ var properties = {
 	analysis_con:'Along with manual calibration, this methodology<br>'+
 		'gives us a reasonably accurate footfall volume <br>'+
 		'<span style="font-size:small">*external noise is still not solved</span>',
-	analysis_issue: 'MAC address <span style="font-weight:500">randomisation</span>',
+	analysis_issue: 'MAC address <span style="font-weight:500">radomisation</span>',
 	solution_discussion1:'Need for collecting more data?',
 	solution_discussion2:'Need a solution which,'+
 		'<br>1. Does not involve collection of personal data.'+
