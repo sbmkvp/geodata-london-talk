@@ -1,8 +1,9 @@
 $(document).ready(function(){
 
-	action = 0;
 	
-	// Set up key events for advance and goback ================================
+	// =========================================================================
+	// Setting up keyboard and mouse events for navigation
+	// =========================================================================
 	$(this).keyup(function(e){
 		if(e.keyCode == 8 || e.keyCode == 37) {
 			execute_action(action,action-1);
@@ -14,7 +15,9 @@ $(document).ready(function(){
 		execute_action(action,action+1);
 		action++; });
 
-	// Create all the objects ==================================================
+	// =========================================================================
+	// Create all the container objects
+	// =========================================================================
 	$('body').append('<div id="background"></div>');
 	$('body').prepend(
 		'<div id="title" style="display:none">'+properties.title+'<br>'+
@@ -60,11 +63,17 @@ $(document).ready(function(){
 	$('body').prepend('<div id="conclusions" style="display:none"></div>');
 	$('body').prepend('<div id="ridge_plots" style="display:none"></div>');
 	$('body').prepend('<div id="calendar" style="display:none"></div>');
+
 	if(action==0) { particles_js('background'); }
+
+	// =========================================================================
+	// Navigation actions ** Needs to be broken down to smaller chunks**
+	// =========================================================================
+
+	action = 0;
 	
-	// Setting up the sequences ================================================
 	function execute_action(a,b) {
-		console.log(a+'..'+b);
+		
 		// Show the Title and Information --------------------------------------
 		if(a == 0 && b == 1) { $("#title").fadeIn(300); }
 		if(a == 1 && b == 0) { $('#title').fadeOut(300); }
@@ -516,7 +525,7 @@ $(document).ready(function(){
 					var width = $(this).width();
 					var height = $(this).height();
 					var chart = d3.select(this).append('g');
-					d3.csv('data/pr.csv',function(pr){
+					d3.csv('data/sample_probes.csv',function(pr){
 						chart.selectAll('.pr')
 							.data(pr)
 							.enter()
@@ -858,7 +867,7 @@ $(document).ready(function(){
 					var width = $(this).width();
 					var height = $(this).height();
 					var chart = d3.select(this).append('g');
-					d3.csv('data/pr.csv',function(pr){
+					d3.csv('data/sample_probes.csv',function(pr){
 						chart.selectAll('.pr')
 							.data(pr)
 							.enter()

@@ -1,2 +1,3 @@
-# bala-presentation
-Presentation for the AGI event
+## bala-presentation
+This repository contains all the material used for the presentation made for the AGI event.
+
