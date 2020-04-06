@@ -14,6 +14,10 @@ $(document).ready(function(){
 	$(this).dblclick(function(e){
 		execute_action(action,action+1);
 		action++; });
+	$(this).on('touchend',function(e){
+		execute_action(action,action+1);
+		action++; });
+
 
 	// =========================================================================
 	// Create all the container objects
