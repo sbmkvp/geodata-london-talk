@@ -1,6 +1,5 @@
 $(document).ready(function(){
 
-	
 	// =========================================================================
 	// Setting up keyboard and mouse events for navigation
 	// =========================================================================
@@ -26,7 +25,7 @@ $(document).ready(function(){
 	$('body').prepend(
 		'<div id="title" style="display:none">'+properties.title+'<br>'+
 		'<div id="author"><br>'+properties.author+'</div>'+
-		'<div id="logos"></div>'+
+		// '<div id="logos"></div>'+
 		'</div>');
 	$('body').prepend('<div id="sections" style="display:none"></div>');
 	for(i in properties.sections) {
@@ -65,8 +64,11 @@ $(document).ready(function(){
 	$('body').prepend('<div id="sequence_numbers_bottom" style="display:none"></div>');
 	$('body').prepend('<div id="solution_chart" style="display:none"></div>');
 	$('body').prepend('<div id="conclusions" style="display:none"></div>');
+	$('body').prepend('<div id="conclusions_title" style="display:none"></div>');
+	$('body').prepend('<div id="footfall_index" style="display:none"></div>');
 	$('body').prepend('<div id="ridge_plots" style="display:none"></div>');
 	$('body').prepend('<div id="calendar" style="display:none"></div>');
+	$('body').prepend('<div id="football" style="display:none"></div>');
 
 	action = 0;
 	
@@ -75,7 +77,8 @@ $(document).ready(function(){
 	// =========================================================================
 	// Navigation actions ** Needs to be broken down to smaller chunks**
 	// =========================================================================
-	
+
+
 	function execute_action(a,b) {
 		
 		// Show the Title and Information --------------------------------------
@@ -1029,18 +1032,36 @@ $(document).ready(function(){
 		if(a == 52 && b == 53) {
 			$("#conclusions").fadeOut(300,function(){
 				$('.particles-js-canvas-el').remove();
-				$('#ridge_plots').fadeIn(300);
+        $('#conclusions_title').text('UK Footfall Index 2017-18');
+        $('#conclusions_title').fadeIn(300);
+        $('#footfall_index').fadeIn(300);
 			})
 		}
 	
 		if(a == 53 && b == 54) {
-			$("#ridge_plots").fadeOut(300,function(){
-				$('#calendar').fadeIn(300);
+      $('#conclusions_title').text('Footfall Profile of Locations');
+			$("#footfall_index").fadeOut(300,function(){
+				$('#ridge_plots').fadeIn(300);
 			})		
 		}
 	
 		if(a == 54 && b == 55) {
+      $('#conclusions_title').text('Footfall Caledar');
+			$("#ridge_plots").fadeOut(300,function(){
+				$('#calendar').fadeIn(300);
+			})		
+		}
+		
+		if(a == 55 && b == 56) {
+      $('#conclusions_title').text('Footfall Worldcup @ London');
 			$("#calendar").fadeOut(300,function(){
+				$('#football').fadeIn(300);
+			})		
+		}
+	
+		if(a == 56 && b == 57) {
+      $('#conclusions_title').fadeOut(300);
+			$("#football").fadeOut(300,function(){
 				particles_js('background');
 				$("#conclusions")
 					.html("Questions?")

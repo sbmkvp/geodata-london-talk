@@ -316,22 +316,41 @@ html body {
 }
 
 
-#ridge_plots {
+#conclusions_title {
+	position: absolute;
+	float: left;
+	top: 10%;
+	left: 50%;
+	transform: translate( -50%, -50%);
+	width : 60%;
+	font-size: xx-large;
+	font-family: Roboto;
+	font-weight: 300;
+	line-height:1.4;
+	color: white;
+	text-align: center;
+	text-shadow: #000000 2px 2px 10px;
+	max-width:1000px;
+	max-height:650px;
+	display:none;
+}
+
+#footfall_index {
 	position: absolute;
 	float: left;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	max-width:900px;
-	max-height:750px;
-	min-height:750px;
-	min-width:900px;
+	max-width:1200px;
+	max-height:310px;
+	min-height:310px;
+	min-width:1200px;
 	display:none;
-	background-size: 900px;
-	background-image: url(../images/ridges.png);
+	background-size: 1200px;
+	background-image: url(../images/footfall_index.png);
 }
 
-#calendar {
+#ridge_plots {
 	position: absolute;
 	float: left;
 	top: 50%;
@@ -343,7 +362,36 @@ html body {
 	min-width:1200px;
 	display:none;
 	background-size: 1200px;
+	background-image: url(../images/ridges.png);
+}
+
+#calendar {
+	position: absolute;
+	float: left;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	max-width:1200px;
+	max-height:675px;
+	min-height:675px;
+	min-width:1200px;
+	display:none;
+	background-size: 1200px;
 	background-image: url(../images/calendar.png);
-	filter: brightness(60%) contrast(250%);
+}
+
+#football {
+	position: absolute;
+	float: left;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	max-width:800px;
+	max-height:700px;
+	min-height:700px;
+	min-width:800px;
+	display:none;
+	background-size: 800px;
+	background-image: url(../images/football.png);
 }
 
